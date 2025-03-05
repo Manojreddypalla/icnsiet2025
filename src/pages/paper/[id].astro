@@ -1,0 +1,193 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+// This would typically come from a database or API
+export const papers = [
+  {
+    id: "1",
+    title: "Advancements in Quantum Computing for Secure Communications",
+    authors: "Dr. Jane Smith, Dr. Robert Johnson",
+    institution: "Massachusetts Institute of Technology",
+    abstract: "This paper explores the latest advancements in quantum computing and their applications in secure communication systems. We present a novel approach to quantum key distribution that significantly improves security while reducing computational overhead.",
+    keywords: ["Quantum Computing", "Cybersecurity", "Communication Systems", "Quantum Key Distribution"],
+    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    publicationDate: "March 15, 2025",
+    doi: "10.1234/qcomp.2025.1234",
+    content: `
+      <h2>Introduction</h2>
+      <p>Quantum computing represents a paradigm shift in computational capabilities, offering unprecedented processing power for certain classes of problems. In the realm of secure communications, quantum computing presents both challenges and opportunities. While it threatens to break many classical encryption algorithms, it also enables new cryptographic protocols that are theoretically unbreakable.</p>
+      
+      <p>In this paper, we explore recent advancements in quantum computing technologies and their applications in developing secure communication systems. We focus particularly on quantum key distribution (QKD) protocols, which leverage the principles of quantum mechanics to establish secure communication channels.</p>
+      
+      <h2>Background and Related Work</h2>
+      <p>The field of quantum cryptography has seen significant growth since the introduction of the BB84 protocol by Bennett and Brassard in 1984. Subsequent protocols such as E91 and BBM92 have built upon this foundation, addressing various practical limitations and security vulnerabilities.</p>
+      
+      <p>Recent work by Zhang et al. (2023) demonstrated a quantum key distribution system capable of operating over distances exceeding 500 kilometers using satellite relays. Similarly, Nakamura and colleagues (2024) proposed a novel approach to mitigating the effects of decoherence in quantum communication channels.</p>
+      
+      <h2>Proposed Methodology</h2>
+      <p>Our approach builds upon these foundations while introducing several key innovations. We propose a hybrid quantum-classical protocol that combines the security advantages of quantum key distribution with the practical benefits of classical post-quantum cryptographic algorithms.</p>
+      
+      <p>The protocol operates in three phases:</p>
+      <ol>
+        <li>Quantum key establishment using an enhanced version of the E91 protocol</li>
+        <li>Key verification and error correction using a novel lattice-based algorithm</li>
+        <li>Secure communication using the established key with a symmetric encryption scheme</li>
+      </ol>
+      
+      <h2>Experimental Results</h2>
+      <p>We implemented our protocol using a 128-qubit quantum processor and evaluated its performance across various metrics, including key generation rate, security against known attack vectors, and computational efficiency.</p>
+      
+      <p>Our results demonstrate a 37% improvement in key generation rate compared to state-of-the-art approaches, while maintaining equivalent security guarantees. Furthermore, our hybrid approach reduces the computational resources required by approximately 42%, making it more practical for deployment in resource-constrained environments.</p>
+      
+      <h2>Conclusion and Future Work</h2>
+      <p>The proposed quantum communication protocol represents a significant advancement in the field of secure communications. By combining quantum and classical approaches, we achieve both theoretical security and practical efficiency.</p>
+      
+      <p>Future work will focus on further optimizing the protocol for specific application domains, such as financial transactions and healthcare data exchange. Additionally, we plan to explore the integration of our approach with emerging quantum networking infrastructures.</p>
+    `
+  },
+  {
+    id: "2",
+    title: "Machine Learning Approaches for Network Traffic Analysis",
+    authors: "Prof. Michael Chen, Dr. Lisa Wang",
+    institution: "Stanford University",
+    abstract: "A comprehensive study on applying various machine learning techniques to analyze and classify network traffic patterns.",
+    keywords: ["Machine Learning", "Network Security", "Traffic Analysis", "Deep Learning"],
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2068&q=80",
+    publicationDate: "February 28, 2025",
+    doi: "10.1234/mlnet.2025.5678",
+    content: `
+      <h2>Introduction</h2>
+      <p>Network traffic analysis plays a crucial role in ensuring the security and performance of modern computer networks. Traditional rule-based approaches to traffic analysis are increasingly inadequate in the face of evolving threats and the growing complexity of network environments.</p>
+      
+      <p>In this paper, we explore the application of various machine learning techniques to the problem of network traffic analysis. We focus on the detection of anomalous traffic patterns, classification of traffic types, and identification of potential security threats.</p>
+      
+      <h2>Methodology</h2>
+      <p>We evaluated several machine learning approaches, including:</p>
+      <ul>
+        <li>Supervised learning algorithms (Random Forests, Support Vector Machines, and Neural Networks)</li>
+        <li>Unsupervised learning techniques (K-means clustering, Isolation Forests, and Autoencoders)</li>
+        <li>Deep learning architectures (Convolutional Neural Networks and Long Short-Term Memory networks)</li>
+      </ul>
+      
+      <p>For our experiments, we utilized a comprehensive dataset comprising over 10 million network flows collected from a diverse range of network environments, including enterprise networks, academic institutions, and cloud service providers.</p>
+      
+      <h2>Results and Discussion</h2>
+      <p>Our experimental results indicate that deep learning approaches, particularly those based on LSTM networks, outperform traditional machine learning algorithms in terms of detection accuracy and false positive rates. Specifically, our LSTM-based model achieved a detection accuracy of 97.8% for known attack vectors and 89.3% for zero-day attacks.</p>
+      
+      <p>Furthermore, we observed that ensemble methods combining multiple learning approaches yielded the most robust results across different network environments and traffic patterns.</p>
+      
+      <h2>Conclusion</h2>
+      <p>Machine learning techniques offer significant advantages over traditional approaches to network traffic analysis. Our research demonstrates the effectiveness of deep learning architectures, particularly LSTM networks, in detecting and classifying network traffic patterns.</p>
+      
+      <p>Future work will focus on developing more efficient training methodologies for these models and exploring their application in real-time traffic analysis systems.</p>
+    `
+  }
+
+
+
+];
+
+export function getStaticPaths() {
+  return papers.map(paper => ({
+    params: { id: paper.id },
+    props: { paper },
+  }));
+}
+
+const { paper } = Astro.props;
+---
+
+<Layout>
+  <Header />
+  
+  <main class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="h-64 overflow-hidden">
+          <img src={paper.image} alt={paper.title} class="w-full h-full object-cover" />
+        </div>
+        
+        <div class="p-8">
+          <h1 class="text-3xl font-bold mb-4">{paper.title}</h1>
+          
+          <div class="flex flex-wrap gap-2 mb-6">
+            {paper.keywords.map(keyword => (
+              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">{keyword}</span>
+            ))}
+          </div>
+          
+          <div class="mb-6">
+            <p class="text-xl font-medium text-gray-800">{paper.authors}</p>
+            <p class="text-gray-600">{paper.institution}</p>
+            <p class="text-gray-500 mt-1">Published: {paper.publicationDate} | DOI: {paper.doi}</p>
+          </div>
+          
+          <div class="mb-8 p-4 bg-gray-50 rounded-lg">
+            <h2 class="text-xl font-semibold mb-2">Abstract</h2>
+            <p class="text-gray-700">{paper.abstract}</p>
+          </div>
+          
+          <div class="prose max-w-none" set:html={paper.content} />
+          
+          <div class="mt-8 pt-6 border-t border-gray-200">
+            <h2 class="text-xl font-semibold mb-4">Citations</h2>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <p class="text-sm font-mono">Smith, J., & Johnson, R. (2025). {paper.title}. <em>Journal of Advanced Computing</em>, 42(3), 156-172. https://doi.org/{paper.doi}</p>
+            </div>
+          </div>
+          
+          <div class="mt-8 flex justify-between">
+            <a href="/papers" class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+              </svg>
+              Back to Papers
+            </a>
+            <button class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+              Download PDF
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<style>
+  .prose h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    color: #111827;
+  }
+  
+  .prose p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+  
+  .prose ul, .prose ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+  
+  .prose li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .prose ol {
+    list-style-type: decimal;
+  }
+  
+  .prose ul {
+    list-style-type: disc;
+  }
+</style>

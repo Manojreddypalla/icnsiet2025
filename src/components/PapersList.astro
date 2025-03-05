@@ -1,0 +1,73 @@
+---
+const papers = [
+  {
+    id: 1,
+    title: "Advancements in Quantum Computing for Secure Communications",
+    authors: "Dr. Jane Smith, Dr. Robert Johnson",
+    abstract: "This paper explores the latest advancements in quantum computing and their applications in secure communication systems.",
+    tags: ["Quantum Computing", "Cybersecurity", "Communication Systems"],
+    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+  },
+  {
+    id: 2,
+    title: "Machine Learning Approaches for Network Traffic Analysis",
+    authors: "Prof. Michael Chen, Dr. Lisa Wang",
+    abstract: "A comprehensive study on applying various machine learning techniques to analyze and classify network traffic patterns.",
+    tags: ["Machine Learning", "Network Security", "Traffic Analysis"],
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2068&q=80"
+  },
+
+    
+  {
+    id: 3,
+    title: "Blockchain-based Solutions for Supply Chain Management",
+    authors: "Dr. Alex Rodriguez, Prof. Sarah Kim",
+    abstract: "This research presents novel blockchain architectures designed to enhance transparency and security in supply chain management systems.",
+    tags: ["Blockchain", "Supply Chain", "Distributed Systems"],
+    image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80"
+  },
+  {
+    id: 4,
+    title: "Edge Computing Frameworks for IoT Applications",
+    authors: "Prof. David Lee, Dr. Emily Wilson",
+    abstract: "An analysis of edge computing frameworks and their effectiveness in processing data from Internet of Things devices.",
+    tags: ["Edge Computing", "IoT", "Distributed Computing"],
+    image: "https://www.cuelogic.com/wp-content/uploads/2021/06/IOT-and-edge-computing.jpg"
+  }
+];
+---
+
+<section id="papers" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12">Events</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+      {papers.map(paper => (
+        <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div class="h-48 overflow-hidden">
+            <img src={paper.image} alt={paper.title} class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">{paper.title}</h3>
+            <p class="text-gray-600 mb-3">{paper.authors}</p>
+            <p class="text-gray-700 mb-4">{paper.abstract}</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              {paper.tags.map(tag => (
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">{tag}</span>
+              ))}
+            </div>
+            <a href={`/paper/${paper.id}`} class="inline-block px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
+              Read Paper
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <div class="text-center mt-12">
+      <a href="/papers" class="inline-block px-6 py-3 border-2 border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-white transition-colors">
+        View All Papers
+      </a>
+    </div>
+  </div>
+</section>

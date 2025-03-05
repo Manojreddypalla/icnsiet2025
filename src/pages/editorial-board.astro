@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const editorialBoard = [
+  {
+    name: "Prof. Sarah Johnson, PhD",
+    role: "Editor-in-Chief",
+    institution: "Department of Computer Science, Stanford University",
+    address: "450 Serra Mall, Stanford, CA 94305, USA",
+    email: "sarah.johnson@stanford.edu",
+    expertise: ["Artificial Intelligence", "Machine Learning", "Neural Networks"]
+  },
+  {
+    name: "Dr. Michael Chen",
+    role: "Associate Editor",
+    institution: "School of Computing, National University of Singapore",
+    address: "21 Lower Kent Ridge Rd, Singapore 119077",
+    email: "michael.chen@nus.edu.sg",
+    expertise: ["Cloud Computing", "Distributed Systems", "Edge Computing"]
+  },
+  {
+    name: "Prof. Elena Rodriguez",
+    role: "Associate Editor",
+    institution: "Department of Computer Engineering, Technical University of Madrid",
+    address: "Av. Complutense, 30, 28040 Madrid, Spain",
+    email: "elena.rodriguez@upm.es",
+    expertise: ["Cybersecurity", "Network Protocols", "Privacy"]
+  },
+  {
+    name: "Dr. James Wilson",
+    role: "Technical Editor",
+    institution: "School of Electrical and Computer Engineering, Georgia Institute of Technology",
+    address: "North Avenue, Atlanta, GA 30332, USA",
+    email: "james.wilson@gatech.edu",
+    expertise: ["IoT", "Embedded Systems", "Wireless Networks"]
+  },
+  {
+    name: "Prof. Akiko Tanaka",
+    role: "Associate Editor",
+    institution: "Department of Information Science, University of Tokyo",
+    address: "7-3-1 Hongo, Bunkyo-ku, Tokyo 113-8654, Japan",
+    email: "akiko.tanaka@u-tokyo.ac.jp",
+    expertise: ["Quantum Computing", "Information Theory", "Cryptography"]
+  }
+];
+---
+
+<Layout>
+  <Header />
+  
+  <main class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-bold text-center mb-12">Editorial Board</h1>
+      
+      <div class="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
+        {editorialBoard.map(member => (
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-2">{member.name}</h2>
+            <p class="text-primary font-medium mb-2">{member.role}</p>
+            <div class="space-y-2 text-gray-600">
+              <p>{member.institution}</p>
+              <p>{member.address}</p>
+              <p>Email: <a href={`mailto:${member.email}`} class="text-primary hover:underline">{member.email}</a></p>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {member.expertise.map(area => (
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">{area}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

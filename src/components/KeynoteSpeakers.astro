@@ -1,0 +1,47 @@
+---
+const speakers = [
+  {
+    name: "Prof. Elena Rodriguez",
+    title: "Director of AI Research, Tech University",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80",
+    topic: "The Future of AI in Communication Systems",
+    bio: "Prof. Rodriguez is a leading researcher in artificial intelligence with over 20 years of experience in the field."
+  },
+  {
+    name: "Dr. James Chen",
+    title: "Chief Technology Officer, Quantum Solutions",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
+    topic: "Quantum Computing: Breaking Barriers in Computational Power",
+    bio: "Dr. Chen has pioneered several breakthroughs in quantum computing and holds multiple patents in the field."
+  },
+  {
+    name: "Dr. Sarah Johnson",
+    title: "Head of Cybersecurity Research, Global Tech",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1961&q=80",
+    topic: "Next-Generation Security Protocols for IoT Ecosystems",
+    bio: "Dr. Johnson is renowned for her work in developing secure communication protocols for interconnected devices."
+  }
+];
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12">Keynote Speakers</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {speakers.map(speaker => (
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="h-64 overflow-hidden">
+            <img src={speaker.image} alt={speaker.name} class="w-full h-full object-cover" />
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-1">{speaker.name}</h3>
+            <p class="text-gray-600 mb-3">{speaker.title}</p>
+            <p class="text-primary font-medium mb-3">"{speaker.topic}"</p>
+            <p class="text-gray-700">{speaker.bio}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
