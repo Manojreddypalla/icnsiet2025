@@ -1,29 +1,40 @@
 ---
+
 ---
 
 <section class="relative py-20 overflow-hidden">
   <div class="absolute inset-0 z-0">
-    <img 
-      src="https://media.licdn.com/dms/image/v2/C561BAQGoY66aEX6qXQ/company-background_10000/company-background_10000/0/1593585933087/sreenidhi_institure_of_science_and_technology_cover?e=2147483647&v=beta&t=muqT75qceAiUAAtnIUrO1OhPYc57pDU1VHSKm-7ydRU" 
-      alt="Conference Background" 
+    <img
+      src="https://media.licdn.com/dms/image/v2/C561BAQGoY66aEX6qXQ/company-background_10000/company-background_10000/0/1593585933087/sreenidhi_institure_of_science_and_technology_cover?e=2147483647&v=beta&t=muqT75qceAiUAAtnIUrO1OhPYc57pDU1VHSKm-7ydRU"
+      alt="Conference Background"
       class="w-full h-full object-cover opacity-20"
     />
-    <div class="absolute inset-0 bg-gradient-to-r from-primary/30 to-secondary/30"></div>
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-primary/30 to-secondary/30"
+    >
+    </div>
   </div>
-  
+
   <div class="container mx-auto px-4 relative z-10">
     <div class="max-w-3xl mx-auto text-center">
-      <h1 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+      <h1
+        class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+      >
         Welcome to ICNSIET 2025
       </h1>
       <p class="text-xl text-gray-800 mb-8">
         Advancing the Future of Computing and Communication Systems
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#register" class="px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-all">
+        <a
+          href="#register"
+          class="px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-all"
+        >
           Register Now
         </a>
-        <div class="px-8 py-3 bg-white text-gray-800 font-medium rounded-lg shadow-lg hover:shadow-xl transition-all">
+        <div
+          class="px-8 py-3 bg-white text-gray-800 font-medium rounded-lg shadow-lg hover:shadow-xl transition-all"
+        >
           <div id="countdown">100:00:00</div>
         </div>
       </div>
@@ -35,38 +46,46 @@
 </section>
 
 <script>
-    // Set countdown to 100 hours from 10:59 AM today
-    const now = new Date();
-    const targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 59, 0);
-    if (now > targetDate) {
-        targetDate.setDate(targetDate.getDate() + 4); // Ensure it's in the future
+  // Set countdown to 100 hours from 10:59 AM today
+  const now = new Date();
+  const targetDate = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    10,
+    59,
+    0,
+  );
+  if (now > targetDate) {
+    targetDate.setDate(targetDate.getDate() + 4); // Ensure it's in the future
+  }
+  targetDate.setHours(targetDate.getHours() + 100);
+
+  function updateCountdown() {
+    const currentTime = new Date();
+    const timeDiff = targetDate - currentTime;
+
+    if (timeDiff > 0) {
+      let hours = Math.floor(timeDiff / (1000 * 60 * 60));
+      let minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+      document.getElementById("countdown").textContent =
+        `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    } else {
+      document.getElementById("countdown").textContent = "00:00:00";
     }
-    targetDate.setHours(targetDate.getHours() + 100);
+  }
 
-    function updateCountdown() {
-        const currentTime = new Date();
-        const timeDiff = targetDate - currentTime;
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
 
-        if (timeDiff > 0) {
-            let hours = Math.floor(timeDiff / (1000 * 60 * 60));
-            let minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-            let seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-            document.getElementById("countdown").textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        } else {
-            document.getElementById("countdown").textContent = "00:00:00";
-        }
-    }
+  // Visitor counter using localStorage
+  function updateVisitCount() {
+    let count = localStorage.getItem("visitCount") || 0;
+    count = parseInt(count) + 1;
+    localStorage.setItem("visitCount", count);
+    document.getElementById("visit-count").textContent = count;
+  }
 
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    // Visitor counter using localStorage
-    function updateVisitCount() {
-        let count = localStorage.getItem("visitCount") || 0;
-        count = parseInt(count) + 1;
-        localStorage.setItem("visitCount", count);
-        document.getElementById("visit-count").textContent = count;
-    }
-
-    updateVisitCount();
+  updateVisitCount();
 </script>
