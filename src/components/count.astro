@@ -1,0 +1,96 @@
+<section class="text-center py-8">
+    <h2 class="text-3xl font-bold mb-4 text-black">TIME REMAINING</h2>
+    <div id="countdown" class="flex justify-center space-x-4 text-center text-3xl font-bold text-white">
+      <div class="flip-card">
+        <div class="flip-card-inner" id="days-card">
+          <div class="flip-card-front bg-gray-900" id="days">00</div>
+        </div>
+        <div class="label text-black">DAYS</div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner" id="hours-card">
+          <div class="flip-card-front bg-gray-900" id="hours">00</div>
+        </div>
+        <div class="label text-black">HOURS</div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner" id="minutes-card">
+          <div class="flip-card-front bg-gray-900" id="minutes">00</div>
+        </div>
+        <div class="label text-black">MINUTES</div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner" id="seconds-card">
+          <div class="flip-card-front bg-gray-900" id="seconds">00</div>
+        </div>
+        <div class="label text-black">SECONDS</div>
+      </div>
+    </div>
+  </section>
+  
+  <script>
+    function updateCountdown() {
+      const now = new Date();
+      const targetDate = new Date();
+      targetDate.setDate(now.getDate() + 40);
+      targetDate.setHours(0, 0, 0, 0);
+  
+      const timeLeft = targetDate.getTime() - now.getTime();
+  
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+  
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+  
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+  
+  <style>
+    .flip-card {
+      perspective: 1000px;
+      width: 80px;
+      height: 120px;
+      display: inline-block;
+      position: relative;
+    }
+  
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease-in-out;
+    }
+  
+    .flip-card-front {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(to bottom, #1a1a1a, #333);
+    }
+  
+    .label {
+      position: absolute;
+      bottom: -25px;
+      width: 100%;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  </style>
+  
