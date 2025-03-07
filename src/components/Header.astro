@@ -10,18 +10,18 @@ const navLinks = [
 ---
 
 <header class="bg-white shadow-md w-full">
-  <div class="container mx-auto px-6 py-4 flex flex-wrap items-center justify-between">
+  <div class="container mx-auto px-6 py-4 flex items-center justify-between">
     
-    <!-- Left: SNIST Logo -->
+    <!-- Left Section: SNIST Logo -->
     <div class="flex items-center">
       <img src="https://sreenidhi.edu.in/wp-content/uploads/2022/02/Sreenidhi-logo-1.png"
-           alt="SNIST Logo" class="h-12 md:h-14 w-auto">
+           alt="SNIST Logo" class="h-14 w-auto">
     </div>
-    
-    <!-- Center: Conference Logo & Details -->
+
+    <!-- Center Section: Conference Logo & Details -->
     <div class="flex flex-col md:flex-row items-center space-x-3 text-center md:text-left">
       <img src="https://static.wixstatic.com/media/03c77b_c6202f1afbda43139e480b44bb271563~mv2.png"
-           alt="ICNSIET Logo" class="h-10 md:h-12 w-auto">
+           alt="ICNSIET Logo" class="h-12 w-auto">
       <div>
         <h1 class="text-xl md:text-2xl font-bold text-gray-800">ICNSIET 2025</h1>
         <p class="text-sm md:text-base text-gray-600">International Conference on Neural Nexus and Synergy: Innovation in Emerging Technologies</p>
@@ -29,17 +29,17 @@ const navLinks = [
       </div>
     </div>
 
-    <!-- Right: Navigation Menu -->
-    <nav class="hidden md:flex space-x-4 md:space-x-6 items-center">
+    <!-- Right Section: Navigation + Springer Logo -->
+    <nav class="hidden md:flex items-center space-x-5">
       {navLinks.map((link) => (
         <a href={link.href} class="text-gray-800 hover:text-primary font-medium">{link.name}</a>
       ))}
       <img src="https://www.imiscoe.org/images/springerlogo.jpg"
-           alt="Springer Logo" class="h-8 md:h-10 w-auto">
+           alt="Springer Logo" class="h-10 w-auto">
     </nav>
 
     <!-- Mobile Menu Button -->
-    <button id="menu-toggle" class="md:hidden text-gray-800">
+    <button id="menu-toggle" class="md:hidden text-gray-800 text-2xl">
       ☰
     </button>
 
