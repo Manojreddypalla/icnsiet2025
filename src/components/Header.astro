@@ -1,38 +1,65 @@
-<header class="bg-white shadow-md relative">
-  <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center">
-    
-    <!-- SNIST Logo aligned to the extreme left using absolute positioning -->
-    <div class="absolute left-0 ml-20">
+Here’s an improved version of your <header> using Flexbox for better responsiveness, ensuring that icons and text adjust properly based on window size.
+
+Key improvements:
+
+Flex-based layout for proper alignment.
+
+No absolute positioning to avoid layout breakage.
+
+Ensured responsiveness with flex-wrap for smaller screens.
+
+
+<header class="bg-white shadow-md">
+  <div class="container mx-auto px-4 py-6 flex flex-wrap items-center justify-between">
+
+    <!-- Left Section: SNIST Logo -->
+    <div class="flex items-center space-x-4">
       <img src="https://sreenidhi.edu.in/wp-content/uploads/2022/02/Sreenidhi-logo-1.png" 
            alt="SNIST Logo" class="h-14 w-auto">
     </div>
 
-    <!-- Rest of the content -->
-    <div class="flex items-center space-x-1 mb-2 md:mb-0 w-full md:w-auto md:ml-14">
-      <div class="flex items-center space-x-1">
-        <img src="https://static.wixstatic.com/media/03c77b_c6202f1afbda43139e480b44bb271563~mv2.png/v1/fill/w_147,h_106,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ICNSIET%20(3).png" 
-             alt="ICNSIET Logo" class="h-13 w-auto">
-        <div>
-          <h1 class="text-2xl font-bold text-gray-800">ICNSIET 2025</h1>
-          <p class="text-sm text-gray-600">International Conference on Neural Nexus and Synergy: Innovation in Emerging Technologies</p>
-          <p class="text-xs text-gray-500">ISSN: Pending</p>
-        </div>
+    <!-- Middle Section: Conference Info -->
+    <div class="flex flex-wrap items-center space-x-3 text-center md:text-left">
+      <img src="https://static.wixstatic.com/media/03c77b_c6202f1afbda43139e480b44bb271563~mv2.png/v1/fill/w_147,h_106,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ICNSIET%20(3).png" 
+           alt="ICNSIET Logo" class="h-14 w-auto">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-800">ICNSIET 2025</h1>
+        <p class="text-sm text-gray-600">International Conference on Neural Nexus and Synergy: Innovation in Emerging Technologies</p>
+        <p class="text-xs text-gray-500">ISSN: Pending</p>
       </div>
     </div>
-    
-    <nav>
-      <ul class="flex flex-wrap space-x-5 md:space-x-6 items-center">
+
+    <!-- Right Section: Navigation & Springer Logo -->
+    <nav class="flex flex-wrap items-center space-x-4">
+      <ul class="flex flex-wrap space-x-4 md:space-x-6 items-center">
         <li><a href="/" class="text-gray-800 hover:text-primary font-medium">Home</a></li>
         <li><a href="/about" class="text-gray-800 hover:text-primary font-medium">About</a></li>
         <li><a href="/editorial-board" class="text-gray-800 hover:text-primary font-medium">Editorial Board</a></li>
         <li><a href="/papers" class="text-gray-800 hover:text-primary font-medium">Papers</a></li>
         <li><a href="/archives" class="text-gray-800 hover:text-primary font-medium">Archives</a></li>
         <li><a href="/contact" class="text-gray-800 hover:text-primary font-medium">Contact</a></li>
-        <li>
-          <img src="https://www.imiscoe.org/images/springerlogo.jpg" 
-               alt="Springer Logo" class="h-10 w-auto">
-        </li>
       </ul>
+      <img src="https://www.imiscoe.org/images/springerlogo.jpg" 
+           alt="Springer Logo" class="h-10 w-auto">
     </nav>
+
   </div>
 </header>
+
+Changes & Benefits:
+
+1. No absolute positioning → Everything is placed flexibly.
+
+
+2. Flexbox-based alignment → Ensures proper spacing on all screen sizes.
+
+
+3. Icons & text scale properly on smaller screens with flex-wrap.
+
+
+4. Springer logo remains aligned at the right end of the navbar.
+
+
+
+Let me know if you need further improvements!
+
