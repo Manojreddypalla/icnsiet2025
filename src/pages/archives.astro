@@ -9,34 +9,18 @@ const archives = [
     issues: [
       {
         volume: 1,
-        issue: 1,
+         issue: 1,
         articles: [
           {
-            title: "Quantum Computing Applications in Modern Cryptography",
-            authors: "Johnson, S., & Smith, R.",
-            pages: "1-15",
+            title: " NATIONAL CONFERENCE ON INNOVATION IN COMMUNICATION AND COMPUTER  NETWORKS",
+            authors: " Dr.CHANDRA SHEKAR, Dr.RAJINEESH,  Dr.ARUNA VARANASI, Dr.H.BALAJI,SNIST",
+            pages: "1-654",
             doi: "10.1234/qc.2025.001"
           },
-          {
-            title: "Neural Networks in Edge Computing: A Survey",
-            authors: "Chen, M., & Wang, L.",
-            pages: "16-32",
-            doi: "10.1234/nn.2025.002"
-          }
+         
         ]
       },
-      {
-        volume: 1,
-        issue: 2,
-        articles: [
-          {
-            title: "Blockchain Solutions for Supply Chain Management",
-            authors: "Rodriguez, E., & Kim, S.",
-            pages: "33-48",
-            doi: "10.1234/bc.2025.003"
-          }
-        ]
-      }
+     
     ]
   }
 ];
@@ -55,13 +39,13 @@ const archives = [
           
           {year.issues.map(issue => (
             <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-              <h3 class="text-2xl font-semibold mb-4">Volume {issue.volume}, Issue {issue.issue}</h3>
+              <h3 class="text-2xl font-semibold mb-4">Volume {issue.volume}</h3>
               
               <div class="space-y-4">
                 {issue.articles.map(article => (
                   <div class="border-b border-gray-200 pb-4 last:border-0 last:pb-0">
                     <h4 class="text-xl font-medium mb-2">
-                      <a href={`/paper/${article.doi}`} class="text-primary hover:underline">
+                      <a href="https://drive.google.com/file/d/1AHdz3ODXIb9k5S6E_pYL5LSY8WpORorC/view?usp=sharing"class="text-primary hover:underline">
                         {article.title}
                       </a>
                     </h4>
