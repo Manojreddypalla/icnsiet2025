@@ -8,8 +8,8 @@
   <style>
     .slider-container {
       position: relative;
-      width: 95%; /* Increased width */
-      max-width: 1600px; /* Increased max width */
+      width: 95%;
+      max-width: 1600px;
       margin: auto;
       overflow: hidden;
       border-radius: 10px;
@@ -28,19 +28,18 @@
 
     .slide img {
       width: 100%;
-      height: 700px; /* Retained height */
+      height: auto;
+      aspect-ratio: 4 / 3;
       object-fit: cover;
       border-radius: 10px;
     }
 
-    /* Show 2 slides on medium screens */
     @media (min-width: 1024px) {
       .slide {
         flex: 0 0 50%;
       }
     }
 
-    /* Show 3 slides on large screens */
     @media (min-width: 1400px) {
       .slide {
         flex: 0 0 33.333%;
