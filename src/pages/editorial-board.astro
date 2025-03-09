@@ -5,44 +5,60 @@ import Footer from '../components/Footer.astro';
 
 const editorialBoard = [
   {
-    name: "Prof. Sarah Johnson, PhD",
-    role: "Editor-in-Chief",
-    institution: "Department of Computer Science, Stanford University",
-    address: "450 Serra Mall, Stanford, CA 94305, USA",
-    email: "sarah.johnson@stanford.edu",
+    name: "Ugo Fiore",
+    role: "Professore Associate",
+    institution: "Department of Computer Science/DI, University of Salerno, Italy",
+    email: "ufiore@unisa.it",
     expertise: ["Artificial Intelligence", "Machine Learning", "Neural Networks"]
   },
   {
-    name: "Dr. Michael Chen",
-    role: "Associate Editor",
-    institution: "School of Computing, National University of Singapore",
-    address: "21 Lower Kent Ridge Rd, Singapore 119077",
-    email: "michael.chen@nus.edu.sg",
+    name: "Marco Aiello",
+    role: "Head of Department (Service Computing)",
+    institution: "Institute for Architecture of Application Systems, University of Stuttgart, Germany",
+    email: "marco.aiello@iaas.uni-stuttgart.de",
     expertise: ["Cloud Computing", "Distributed Systems", "Edge Computing"]
   },
   {
-    name: "Prof. Elena Rodriguez",
-    role: "Associate Editor",
-    institution: "Department of Computer Engineering, Technical University of Madrid",
-    address: "Av. Complutense, 30, 28040 Madrid, Spain",
-    email: "elena.rodriguez@upm.es",
+    name: "Dr. Aruna Varanasi",
+    role: "Professor and Head – Department of Computer Science Engineering",
+    institution: "Sreenidhi Institute of Science and Technology, Hyderabad",
+    email: "hod-cse@sreenidhi.edu.in",
     expertise: ["Cybersecurity", "Network Protocols", "Privacy"]
   },
   {
-    name: "Dr. James Wilson",
-    role: "Technical Editor",
-    institution: "School of Electrical and Computer Engineering, Georgia Institute of Technology",
-    address: "North Avenue, Atlanta, GA 30332, USA",
-    email: "james.wilson@gatech.edu",
+    name: "Dr. Halavath Balaji",
+    role: "Professor",
+    institution: "Sreenidhi Institute of Science and Technology, Hyderabad",
+    email: "balaji.h@sreenidhi.edu.in",
     expertise: ["IoT", "Embedded Systems", "Wireless Networks"]
   },
   {
-    name: "Prof. Akiko Tanaka",
-    role: "Associate Editor",
-    institution: "Department of Information Science, University of Tokyo",
-    address: "7-3-1 Hongo, Bunkyo-ku, Tokyo 113-8654, Japan",
-    email: "akiko.tanaka@u-tokyo.ac.jp",
+    name: "Dr. Chandrashekar Jatoth",
+    role: "Assistant Professor",
+    institution: "Information Technology, NIT Raipur",
+    email: "chandrashekar.jatoth@gmail.com",
     expertise: ["Quantum Computing", "Information Theory", "Cryptography"]
+  },
+  {
+    name: "B Rama Raju",
+    role: "Associate Professor",
+    institution: "Department of Biotechnology, NIT Warangal",
+    email: "rrb@nitw.ac.in",
+    expertise: ["Bioinformatics", "Genomics", "Proteomics"]
+  },
+  {
+    name: "Mettu Srinivas",
+    role: "Assistant Professor",
+    institution: "Department of Computer Science and Engineering, NIT Warangal",
+    email: "msv@nitw.ac.in",
+    expertise: ["Software Engineering", "Data Mining", "Big Data"]
+  },
+  {
+    name: "Prof. A. Govardhan",
+    role: "Vice Chancellor",
+    institution: "Rajiv Gandhi University of Knowledge Technologies, Basara (RGUKT)",
+    email: "vc@rgukt.ac.in",
+    expertise: ["Artificial Intelligence", "Machine Learning", "Data Science"]
   }
 ];
 ---
@@ -61,7 +77,6 @@ const editorialBoard = [
             <p class="text-primary font-medium mb-2">{member.role}</p>
             <div class="space-y-2 text-gray-600">
               <p>{member.institution}</p>
-              <p>{member.address}</p>
               <p>Email: <a href={`mailto:${member.email}`} class="text-primary hover:underline">{member.email}</a></p>
             </div>
             <div class="mt-4 flex flex-wrap gap-2">
