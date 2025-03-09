@@ -1,23 +1,215 @@
----
-const papers = [
-  {
-    id: 1,
-    title: "Advancements in Quantum Computing for Secure Communications",
-    authors: "Dr. Jane Smith, Dr. Robert Johnson",
-    abstract: "This paper explores the latest advancements in quantum computing and their applications in secure communication systems.",
-    tags: ["Quantum Computing", "Cybersecurity", "Communication Systems"],
-    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-  },
-];
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Events Slider</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .slider-container {
+      position: relative;
+      width: 95%; /* Increased width */
+      max-width: 1600px; /* Increased max width */
+      margin: auto;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
 
-<section id="papers" class="py-16 bg-white">
+    .slider-wrapper {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      padding: 10px;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 700px; /* Retained height */
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    /* Show 2 slides on medium screens */
+    @media (min-width: 1024px) {
+      .slide {
+        flex: 0 0 50%;
+      }
+    }
+
+    /* Show 3 slides on large screens */
+    @media (min-width: 1400px) {
+      .slide {
+        flex: 0 0 33.333%;
+      }
+    }
+
+    .slider-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .slider-button:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+
+    .slider-dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: white;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .dot.active {
+      background: black;
+      transform: scale(1.3);
+    }
+  </style>
+</head>
+<body>
+
+<section id="gallery" class="py-12 bg-gray-100">
   <div class="container mx-auto px-4">
-    <h2 class="text-6xl font-bold text-center mb-12">Events</h2>
-    
-    
-    
-   
+    <h1 class="text-4xl font-bold text-center mb-12">
+      <span style="color: black; font-family: 'Poppins', sans-serif;">
+        College Events
+      </span>
+    </h1>
+
+    <div class="slider-container">
+      <div class="slider-wrapper">
+        <div class="slide"><img src="https://github.com/Manojreddypalla/images/blob/main/BPS_0307.jpg?raw=true" alt="Event 1"></div>
+        <div class="slide"><img src="https://github.com/Manojreddypalla/images/blob/main/four.png?raw=true" alt="Event 2"></div>
+        <div class="slide"><img src="https://github.com/Manojreddypalla/images/blob/main/one.png?raw=true" alt="Event 3"></div>
+        <div class="slide"><img src="https://github.com/Manojreddypalla/images/blob/main/three.png?raw=true" alt="Event 4"></div>
+        <!-- <div class="slide"><img src="https://github.com/Manojreddypalla/images/blob/main/two.png?raw=true" alt="Event 5"></div> -->
+      </div>
+
+      <button class="slider-button prev">❮</button>
+      <button class="slider-button next">❯</button>
+
+      <div class="slider-dots">
+        <div class="dot active" data-index="0"></div>
+        <div class="dot" data-index="1"></div>
+        <div class="dot" data-index="2"></div>
+        <div class="dot" data-index="3"></div>
+        <div class="dot" data-index="4"></div>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  let currentSlide = 0;
+  let slidesPerView = 1;
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+  const wrapper = document.querySelector('.slider-wrapper');
+  const prevButton = document.querySelector('.prev');
+  const nextButton = document.querySelector('.next');
+
+  function updateSlidesPerView() {
+    if (window.innerWidth >= 1400) {
+      slidesPerView = 3;
+    } else if (window.innerWidth >= 1024) {
+      slidesPerView = 2;
+    } else {
+      slidesPerView = 1;
+    }
+  }
+
+  function updateSlider() {
+    const slideWidth = 100 / slidesPerView;
+    wrapper.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+    
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentSlide);
+    });
+  }
+
+  function nextSlide() {
+    const maxSlides = slides.length - slidesPerView;
+    currentSlide = (currentSlide + 1) % (maxSlides + 1);
+    updateSlider();
+  }
+
+  function prevSlide() {
+    const maxSlides = slides.length - slidesPerView;
+    currentSlide = (currentSlide - 1 + (maxSlides + 1)) % (maxSlides + 1);
+    updateSlider();
+  }
+
+  prevButton.addEventListener('click', prevSlide);
+  nextButton.addEventListener('click', nextSlide);
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      currentSlide = index;
+      updateSlider();
+    });
+  });
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  wrapper.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  wrapper.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchStartX - touchEndX > 50) {
+      nextSlide();
+    } else if (touchEndX - touchStartX > 50) {
+      prevSlide();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    updateSlidesPerView();
+    updateSlider();
+  });
+
+  updateSlidesPerView();
+  updateSlider();
+
+  const autoSlideInterval = setInterval(nextSlide, 5000);
+
+  [prevButton, nextButton, ...dots].forEach(element => {
+    element.addEventListener('click', () => {
+      clearInterval(autoSlideInterval);
+    });
+  });
+</script>
+
+</body>
+</html>
