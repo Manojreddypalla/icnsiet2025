@@ -24,6 +24,25 @@
         Register Now
       </a>
       </div>
+      <p id="visitor-counter" class="mt-8 text-lg font-bold text-gray-700"></p>
     </div>
   </div>
 </section>
+
+<script>
+// Simple visitor counter using localStorage (for basic functionality)
+window.addEventListener('DOMContentLoaded', () => {
+  // Fetch or initialize the count in localStorage
+  let visitCount = localStorage.getItem('visitCount') || 0;
+  visitCount = parseInt(visitCount) + 1;
+
+  // Update count in localStorage
+  localStorage.setItem('visitCount', visitCount);
+
+  // Display visitor count
+  const visitorCounter = document.getElementById('visitor-counter');
+  if (visitorCounter) {
+    visitorCounter.textContent = `Visitors: ${visitCount}`;
+  }
+});
+</script>
