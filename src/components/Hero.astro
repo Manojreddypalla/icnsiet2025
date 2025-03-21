@@ -24,25 +24,60 @@
         Register Now
       </a>
       </div>
-      <p id="visitor-counter" class="mt-8 text-lg font-bold text-gray-700"></p>
+      <p id="visitor-counter" class="mt-8 text-lg font-bold text-gray-700">Loading visitor count...</p>
     </div>
   </div>
 </section>
 
 <script>
-// Simple visitor counter using localStorage (for basic functionality)
-window.addEventListener('DOMContentLoaded', () => {
-  // Fetch or initialize the count in localStorage
-  let visitCount = localStorage.getItem('visitCount') || 0;
-  visitCount = parseInt(visitCount) + 1;
+let clientId: string | null = null;
 
-  // Update count in localStorage
-  localStorage.setItem('visitCount', visitCount);
-
-  // Display visitor count
-  const visitorCounter = document.getElementById('visitor-counter');
-  if (visitorCounter) {
-    visitorCounter.textContent = `Visitors: ${visitCount}`;
+async function updateVisitorCount() {
+  try {
+    console.log('Fetching visitor count...');
+    const response = await fetch('/api/visitors', {
+      headers: {
+        'x-client-id': clientId || ''
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch visitor count: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    console.log('Received data:', data);
+    
+    clientId = response.headers.get('x-client-id');
+    
+    const visitorCounter = document.getElementById('visitor-counter');
+    if (visitorCounter) {
+      visitorCounter.textContent = `Total Visits: ${data.totalVisits} | Active Users: ${data.activeUsers}`;
+      visitorCounter.style.display = 'block';
+    } else {
+      console.error('Visitor counter element not found');
+    }
+  } catch (error) {
+    console.error('Error updating visitor count:', error);
+    const visitorCounter = document.getElementById('visitor-counter');
+    if (visitorCounter) {
+      visitorCounter.textContent = 'Error loading visitor count';
+      visitorCounter.style.display = 'block';
+    }
   }
+}
+
+// Update count when page loads
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM loaded, initializing visitor counter...');
+  updateVisitorCount();
 });
+
+// Update count every 10 seconds to keep active users count current
+setInterval(updateVisitorCount, 10000);
+
+// Update count when user interacts with the page
+document.addEventListener('mousemove', updateVisitorCount);
+document.addEventListener('click', updateVisitorCount);
+document.addEventListener('keypress', updateVisitorCount);
 </script>
