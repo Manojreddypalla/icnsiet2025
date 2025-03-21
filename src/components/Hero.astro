@@ -27,6 +27,7 @@
       <p id="visitor-counter" class="mt-8 text-lg font-bold text-gray-700">
         <span id="loading-text">Loading visitor count...</span>
         <span id="error-text" class="text-red-500 hidden">Error loading visitor count</span>
+        <span id="db-error-text" class="text-yellow-500 hidden">Database connection not configured</span>
         <span id="counter-text" class="hidden"></span>
       </p>
     </div>
@@ -40,6 +41,7 @@ let updateInterval: number | null = null;
 function showElement(id: string) {
   document.getElementById('loading-text')?.classList.add('hidden');
   document.getElementById('error-text')?.classList.add('hidden');
+  document.getElementById('db-error-text')?.classList.add('hidden');
   document.getElementById('counter-text')?.classList.add('hidden');
   document.getElementById(id)?.classList.remove('hidden');
 }
@@ -52,14 +54,15 @@ async function updateVisitorCount() {
       }
     });
     
-    if (!response.ok) {
-      throw new Error(`Failed to fetch visitor count: ${response.status}`);
-    }
-    
     const data = await response.json();
     
-    if (data.error) {
-      throw new Error(data.error);
+    if (response.status === 503) {
+      showElement('db-error-text');
+      return;
+    }
+    
+    if (!response.ok || data.error) {
+      throw new Error(data.error || `Failed to fetch visitor count: ${response.status}`);
     }
     
     clientId = response.headers.get('x-client-id');

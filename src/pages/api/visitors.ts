@@ -4,13 +4,18 @@ import { MongoClient, ObjectId } from 'mongodb';
 // MongoDB connection string from environment variables
 const MONGODB_URI = import.meta.env.MONGO_URI;
 
-if (!MONGODB_URI) {
-  throw new Error('MongoDB connection string is not defined in environment variables');
+// Check for required environment variables during build time
+if (import.meta.env.PROD && !MONGODB_URI) {
+  console.error('MongoDB connection string is not defined in environment variables');
 }
 
 let client: MongoClient | null = null;
 
 async function getMongoClient() {
+  if (!MONGODB_URI) {
+    throw new Error('MongoDB connection string is not defined in environment variables');
+  }
+  
   if (!client) {
     client = new MongoClient(MONGODB_URI);
   }
@@ -19,6 +24,21 @@ async function getMongoClient() {
 
 export const GET: APIRoute = async ({ request }) => {
   try {
+    // Check for MongoDB URI first
+    if (!MONGODB_URI) {
+      return new Response(JSON.stringify({ 
+        error: 'Database connection not configured',
+        totalVisits: 0,
+        activeUsers: 0
+      }), {
+        status: 503,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        }
+      });
+    }
+
     const clientId = request.headers.get('x-client-id') || crypto.randomUUID();
     const mongoClient = await getMongoClient();
     const db = mongoClient.db('visitor-counter');
@@ -46,7 +66,7 @@ export const GET: APIRoute = async ({ request }) => {
     
     // Increment total visits
     await db.collection('stats').updateOne(
-      { _id: new ObjectId('000000000000000000000000') }, // Using a fixed ObjectId for the stats document
+      { _id: new ObjectId('000000000000000000000000') },
       { $inc: { count: 1 } },
       { upsert: true }
     );
@@ -73,10 +93,15 @@ export const GET: APIRoute = async ({ request }) => {
     });
   } catch (error) {
     console.error('API Error:', error);
-    return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
+    return new Response(JSON.stringify({ 
+      error: 'Internal Server Error',
+      totalVisits: 0,
+      activeUsers: 0
+    }), {
       status: 500,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       }
     });
   }
