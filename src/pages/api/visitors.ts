@@ -1,44 +1,67 @@
 import type { APIRoute } from 'astro';
+import { MongoClient, ObjectId } from 'mongodb';
 
-// In-memory storage (in production, use a database)
-let totalVisits = 0;
-interface ActiveUser {
-  lastActive: number;
-  clientId: string;
+// MongoDB connection string from environment variables
+const MONGODB_URI = import.meta.env.MONGO_URI;
+
+if (!MONGODB_URI) {
+  throw new Error('MongoDB connection string is not defined in environment variables');
 }
-const activeUsers = new Map<string, ActiveUser>();
 
-// Remove inactive users (those who haven't been active for 2 minutes)
-function cleanupInactiveUsers() {
-  const now = Date.now();
-  const inactiveThreshold = 2 * 60 * 1000; // 2 minutes
+let client: MongoClient | null = null;
 
-  for (const [clientId, user] of activeUsers.entries()) {
-    if (now - user.lastActive > inactiveThreshold) {
-      activeUsers.delete(clientId);
-    }
+async function getMongoClient() {
+  if (!client) {
+    client = new MongoClient(MONGODB_URI);
   }
+  return client;
 }
 
 export const GET: APIRoute = async ({ request }) => {
   try {
     const clientId = request.headers.get('x-client-id') || crypto.randomUUID();
+    const mongoClient = await getMongoClient();
+    const db = mongoClient.db('visitor-counter');
     
-    // Update or add active user
-    activeUsers.set(clientId, {
-      lastActive: Date.now(),
-      clientId
+    // Update or create visitor document
+    const now = Date.now();
+    const inactiveThreshold = 2 * 60 * 1000; // 2 minutes
+    
+    // Update active users
+    await db.collection('activeUsers').updateOne(
+      { clientId },
+      { 
+        $set: { 
+          lastActive: now,
+          clientId
+        }
+      },
+      { upsert: true }
+    );
+    
+    // Cleanup inactive users
+    await db.collection('activeUsers').deleteMany({
+      lastActive: { $lt: now - inactiveThreshold }
     });
     
     // Increment total visits
-    totalVisits++;
+    await db.collection('stats').updateOne(
+      { _id: new ObjectId('000000000000000000000000') }, // Using a fixed ObjectId for the stats document
+      { $inc: { count: 1 } },
+      { upsert: true }
+    );
     
-    // Cleanup inactive users before sending response
-    cleanupInactiveUsers();
+    // Get current stats
+    const [activeUsersCount, visitsDoc] = await Promise.all([
+      db.collection('activeUsers').countDocuments(),
+      db.collection('stats').findOne({ _id: new ObjectId('000000000000000000000000') })
+    ]);
+    
+    const totalVisits = visitsDoc?.count || 0;
     
     return new Response(JSON.stringify({
       totalVisits,
-      activeUsers: activeUsers.size,
+      activeUsers: activeUsersCount,
       clientId
     }), {
       status: 200,

@@ -24,17 +24,28 @@
         Register Now
       </a>
       </div>
-      <p id="visitor-counter" class="mt-8 text-lg font-bold text-gray-700">Loading visitor count...</p>
+      <p id="visitor-counter" class="mt-8 text-lg font-bold text-gray-700">
+        <span id="loading-text">Loading visitor count...</span>
+        <span id="error-text" class="text-red-500 hidden">Error loading visitor count</span>
+        <span id="counter-text" class="hidden"></span>
+      </p>
     </div>
   </div>
 </section>
 
 <script>
 let clientId: string | null = null;
+let updateInterval: number | null = null;
+
+function showElement(id: string) {
+  document.getElementById('loading-text')?.classList.add('hidden');
+  document.getElementById('error-text')?.classList.add('hidden');
+  document.getElementById('counter-text')?.classList.add('hidden');
+  document.getElementById(id)?.classList.remove('hidden');
+}
 
 async function updateVisitorCount() {
   try {
-    console.log('Fetching visitor count...');
     const response = await fetch('/api/visitors', {
       headers: {
         'x-client-id': clientId || ''
@@ -46,38 +57,41 @@ async function updateVisitorCount() {
     }
     
     const data = await response.json();
-    console.log('Received data:', data);
+    
+    if (data.error) {
+      throw new Error(data.error);
+    }
     
     clientId = response.headers.get('x-client-id');
     
-    const visitorCounter = document.getElementById('visitor-counter');
-    if (visitorCounter) {
-      visitorCounter.textContent = `Total Visits: ${data.totalVisits} | Active Users: ${data.activeUsers}`;
-      visitorCounter.style.display = 'block';
-    } else {
-      console.error('Visitor counter element not found');
+    const counterText = document.getElementById('counter-text');
+    if (counterText) {
+      counterText.textContent = `Total Visits: ${data.totalVisits} | Active Users: ${data.activeUsers}`;
+      showElement('counter-text');
     }
   } catch (error) {
     console.error('Error updating visitor count:', error);
-    const visitorCounter = document.getElementById('visitor-counter');
-    if (visitorCounter) {
-      visitorCounter.textContent = 'Error loading visitor count';
-      visitorCounter.style.display = 'block';
-    }
+    showElement('error-text');
   }
 }
 
 // Update count when page loads
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOM loaded, initializing visitor counter...');
   updateVisitorCount();
+  
+  // Update count every 10 seconds to keep active users count current
+  updateInterval = window.setInterval(updateVisitorCount, 10000);
+  
+  // Update count when user interacts with the page
+  document.addEventListener('mousemove', updateVisitorCount);
+  document.addEventListener('click', updateVisitorCount);
+  document.addEventListener('keypress', updateVisitorCount);
 });
 
-// Update count every 10 seconds to keep active users count current
-setInterval(updateVisitorCount, 10000);
-
-// Update count when user interacts with the page
-document.addEventListener('mousemove', updateVisitorCount);
-document.addEventListener('click', updateVisitorCount);
-document.addEventListener('keypress', updateVisitorCount);
+// Cleanup interval when page is unloaded
+window.addEventListener('beforeunload', () => {
+  if (updateInterval) {
+    clearInterval(updateInterval);
+  }
+});
 </script>
