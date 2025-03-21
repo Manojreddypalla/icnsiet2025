@@ -4,7 +4,14 @@ import { MongoClient, ObjectId } from 'mongodb';
 // MongoDB connection string from environment variables
 const MONGODB_URI = import.meta.env.MONGO_URI;
 
-console.log('MongoDB URI available:', !!MONGODB_URI);
+// Add detailed logging
+console.log('Environment variables:', {
+  MONGO_URI: MONGODB_URI ? 'Present' : 'Missing',
+  NODE_ENV: import.meta.env.MODE,
+  DEV: import.meta.env.DEV,
+  PROD: import.meta.env.PROD
+});
+
 if (!MONGODB_URI) {
   console.error('MongoDB URI is not configured in environment variables');
 }
