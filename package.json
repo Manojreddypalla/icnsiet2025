@@ -7,11 +7,13 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "start": "node index.js"
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.5",
     "astro": "^5.4.2",
+    "dns": "^0.2.2",
     "dotenv": "^16.4.7",
     "mongodb": "^6.15.0",
     "mongoose": "^8.12.1",

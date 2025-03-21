@@ -35,8 +35,15 @@
 </section>
 
 <script>
-let clientId: string | null = null;
+// Get or create client ID from localStorage
+let clientId = localStorage.getItem('visitor-client-id');
+if (!clientId) {
+  clientId = crypto.randomUUID();
+  localStorage.setItem('visitor-client-id', clientId);
+}
+
 let updateInterval: number | null = null;
+let lastUpdateTime = Date.now();
 
 function showElement(id: string) {
   document.getElementById('loading-text')?.classList.add('hidden');
@@ -48,6 +55,14 @@ function showElement(id: string) {
 
 async function updateVisitorCount() {
   try {
+    // Only update if at least 5 seconds have passed since last update
+    const now = Date.now();
+    if (now - lastUpdateTime < 5000) {
+      return;
+    }
+    lastUpdateTime = now;
+
+    console.log('Updating visitor count for client:', clientId);
     const response = await fetch('/api/visitors', {
       headers: {
         'x-client-id': clientId || ''
@@ -55,6 +70,7 @@ async function updateVisitorCount() {
     });
     
     const data = await response.json();
+    console.log('Received data:', data);
     
     if (response.status === 503) {
       showElement('db-error-text');
@@ -65,7 +81,12 @@ async function updateVisitorCount() {
       throw new Error(data.error || `Failed to fetch visitor count: ${response.status}`);
     }
     
-    clientId = response.headers.get('x-client-id');
+    // Update client ID if it changed
+    const newClientId = response.headers.get('x-client-id');
+    if (newClientId && newClientId !== clientId) {
+      clientId = newClientId;
+      localStorage.setItem('visitor-client-id', clientId);
+    }
     
     const counterText = document.getElementById('counter-text');
     if (counterText) {
@@ -80,6 +101,7 @@ async function updateVisitorCount() {
 
 // Update count when page loads
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('Initializing visitor counter with client ID:', clientId);
   updateVisitorCount();
   
   // Update count every 10 seconds to keep active users count current

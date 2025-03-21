@@ -4,9 +4,9 @@ import { MongoClient, ObjectId } from 'mongodb';
 // MongoDB connection string from environment variables
 const MONGODB_URI = import.meta.env.MONGO_URI;
 
-// Check for required environment variables during build time
-if (import.meta.env.PROD && !MONGODB_URI) {
-  console.error('MongoDB connection string is not defined in environment variables');
+console.log('MongoDB URI available:', !!MONGODB_URI);
+if (!MONGODB_URI) {
+  console.error('MongoDB URI is not configured in environment variables');
 }
 
 let client: MongoClient | null = null;
@@ -17,6 +17,7 @@ async function getMongoClient() {
   }
   
   if (!client) {
+    console.log('Creating new MongoDB client connection');
     client = new MongoClient(MONGODB_URI);
   }
   return client;
@@ -26,6 +27,7 @@ export const GET: APIRoute = async ({ request }) => {
   try {
     // Check for MongoDB URI first
     if (!MONGODB_URI) {
+      console.error('MongoDB URI is not configured');
       return new Response(JSON.stringify({ 
         error: 'Database connection not configured',
         totalVisits: 0,
@@ -40,36 +42,48 @@ export const GET: APIRoute = async ({ request }) => {
     }
 
     const clientId = request.headers.get('x-client-id') || crypto.randomUUID();
+    console.log('Processing request for client:', clientId);
+    
     const mongoClient = await getMongoClient();
+    console.log('Connected to MongoDB client');
+    
     const db = mongoClient.db('visitor-counter');
+    console.log('Using database: visitor-counter');
     
     // Update or create visitor document
     const now = Date.now();
     const inactiveThreshold = 2 * 60 * 1000; // 2 minutes
     
     // Update active users
-    await db.collection('activeUsers').updateOne(
+    const activeUserResult = await db.collection('activeUsers').updateOne(
       { clientId },
       { 
         $set: { 
           lastActive: now,
-          clientId
+          clientId,
+          firstSeen: { $setOnInsert: now }
         }
       },
       { upsert: true }
     );
+    console.log('Active user update result:', activeUserResult);
     
     // Cleanup inactive users
-    await db.collection('activeUsers').deleteMany({
+    const cleanupResult = await db.collection('activeUsers').deleteMany({
       lastActive: { $lt: now - inactiveThreshold }
     });
+    console.log('Cleanup result:', cleanupResult);
     
     // Increment total visits
-    await db.collection('stats').updateOne(
+    const visitResult = await db.collection('stats').updateOne(
       { _id: new ObjectId('000000000000000000000000') },
-      { $inc: { count: 1 } },
+      { 
+        $inc: { count: 1 },
+        $setOnInsert: { lastUpdated: now }
+      },
       { upsert: true }
     );
+    console.log('Visit update result:', visitResult);
     
     // Get current stats
     const [activeUsersCount, visitsDoc] = await Promise.all([
@@ -78,6 +92,7 @@ export const GET: APIRoute = async ({ request }) => {
     ]);
     
     const totalVisits = visitsDoc?.count || 0;
+    console.log('Current stats:', { totalVisits, activeUsers: activeUsersCount });
     
     return new Response(JSON.stringify({
       totalVisits,
