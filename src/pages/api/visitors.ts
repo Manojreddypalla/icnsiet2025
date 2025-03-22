@@ -49,7 +49,8 @@ export const GET: APIRoute = async ({ request }) => {
     }
 
     const clientId = request.headers.get('x-client-id') || crypto.randomUUID();
-    console.log('Processing request for client:', clientId);
+    const shouldUpdateTotal = request.headers.get('x-update-total') === 'true';
+    console.log('Processing request for client:', clientId, 'Update total:', shouldUpdateTotal);
     
     const mongoClient = await getMongoClient();
     console.log('Connected to MongoDB client');
@@ -81,16 +82,18 @@ export const GET: APIRoute = async ({ request }) => {
     });
     console.log('Cleanup result:', cleanupResult);
     
-    // Increment total visits
-    const visitResult = await db.collection('stats').updateOne(
-      { _id: new ObjectId('000000000000000000000000') },
-      { 
-        $inc: { count: 1 },
-        $setOnInsert: { lastUpdated: now }
-      },
-      { upsert: true }
-    );
-    console.log('Visit update result:', visitResult);
+    // Only increment total visits if requested
+    if (shouldUpdateTotal) {
+      const visitResult = await db.collection('stats').updateOne(
+        { _id: new ObjectId('000000000000000000000000') },
+        { 
+          $inc: { count: 1 },
+          $setOnInsert: { lastUpdated: now }
+        },
+        { upsert: true }
+      );
+      console.log('Visit update result:', visitResult);
+    }
     
     // Get current stats
     const [activeUsersCount, visitsDoc] = await Promise.all([

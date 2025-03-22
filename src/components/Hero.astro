@@ -44,6 +44,7 @@ if (!clientId) {
 
 let updateInterval: number | null = null;
 let lastUpdateTime = Date.now();
+let hasUpdatedVisits = localStorage.getItem('has-updated-visits') === 'true';
 
 function showElement(id: string) {
   document.getElementById('loading-text')?.classList.add('hidden');
@@ -53,7 +54,7 @@ function showElement(id: string) {
   document.getElementById(id)?.classList.remove('hidden');
 }
 
-async function updateVisitorCount() {
+async function updateVisitorCount(updateTotalVisits = false) {
   try {
     // Only update if at least 5 seconds have passed since last update
     const now = Date.now();
@@ -62,10 +63,11 @@ async function updateVisitorCount() {
     }
     lastUpdateTime = now;
 
-    console.log('Updating visitor count for client:', clientId);
+    console.log('Updating visitor count for client:', clientId, 'Update total:', updateTotalVisits);
     const response = await fetch('/api/visitors', {
       headers: {
-        'x-client-id': clientId || ''
+        'x-client-id': clientId || '',
+        'x-update-total': updateTotalVisits ? 'true' : 'false'
       }
     });
     
@@ -93,6 +95,12 @@ async function updateVisitorCount() {
       counterText.textContent = `Total Visits: ${data.totalVisits} | Active Users: ${data.activeUsers}`;
       showElement('counter-text');
     }
+
+    // If we updated total visits, mark it in localStorage
+    if (updateTotalVisits) {
+      hasUpdatedVisits = true;
+      localStorage.setItem('has-updated-visits', 'true');
+    }
   } catch (error) {
     console.error('Error updating visitor count:', error);
     showElement('error-text');
@@ -102,15 +110,23 @@ async function updateVisitorCount() {
 // Update count when page loads
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Initializing visitor counter with client ID:', clientId);
-  updateVisitorCount();
+  console.log('Has updated visits:', hasUpdatedVisits);
   
-  // Update count every 10 seconds to keep active users count current
-  updateInterval = window.setInterval(updateVisitorCount, 10000);
+  // Update total visits only once per session
+  if (!hasUpdatedVisits) {
+    updateVisitorCount(true);
+  } else {
+    // If we've already updated visits, just get the current count
+    updateVisitorCount(false);
+  }
   
-  // Update count when user interacts with the page
-  document.addEventListener('mousemove', updateVisitorCount);
-  document.addEventListener('click', updateVisitorCount);
-  document.addEventListener('keypress', updateVisitorCount);
+  // Update active users count every 10 seconds
+  updateInterval = window.setInterval(() => updateVisitorCount(false), 10000);
+  
+  // Update active users count on user interaction
+  document.addEventListener('mousemove', () => updateVisitorCount(false));
+  document.addEventListener('click', () => updateVisitorCount(false));
+  document.addEventListener('keypress', () => updateVisitorCount(false));
 });
 
 // Cleanup interval when page is unloaded
