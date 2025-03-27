@@ -19,7 +19,7 @@ const papers = [
     id: 2,
     title: 'SUSPICIOUS ACTIVITY DETECTION',
     authors: 'Kanchanapally Keerthi, Kadari Sreeya, Racharla Abhinaya, Budidha Malathi',
-    professor: 'Asst. Professor: Not Specified',
+   // professor: 'Asst. Professor: Not Specified',
     description: 'The paper focuses on automating video surveillance to detect unusual or suspicious activities.',
     categories: ['Surveillance', 'Video Analysis', 'Real-Time Monitoring'],
     image: 'https://www.altexsoft.com/static/blog-post-featured/2023/10/1c51eb5b-4f95-4d34-9a9d-86d66d7c6e78.jpg',
@@ -154,6 +154,7 @@ const filteredPapers = filterPapers(papers, initialCategory, initialSearchTerm);
                 {paper.professor}<br/>
                 {paper.authors}
               </p>
+              <br>
               <p class="text-gray-700 mb-4 line-clamp-3 flex-grow">
                 {paper.description}
               </p>
