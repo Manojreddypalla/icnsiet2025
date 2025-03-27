@@ -1,4 +1,5 @@
 ---
+// filepath: c:\Users\Manoj\Documents\GitHub\college-web-project\src\pages\archives.astro
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -13,66 +14,44 @@ const archives = [
         articles: [
           {
             title: "NATIONAL CONFERENCE ON INNOVATION IN COMMUNICATION AND COMPUTER NETWORKS",
-            authors: "Dr.CHANDRA SHEKAR, Dr.RAJINEESH, Dr.ARUNA VARANASI, Dr.H.BALAJI,SNIST",
+            authors: "Dr. CHANDRA SHEKAR, Dr. RAJINEESH, Dr. ARUNA VARANASI, Dr. H. BALAJI, SNIST",
             pages: "1-335",
             doi: "10.1234/qc.2025.001",
-            fileType: "pdf",
-            filePath: "/pdfs/NCICCN-VOLUME-1.pdf"
-          },
-          {
-            title: "Sample HTML Article",
-            authors: "Author Name",
-            pages: "1-50",
-            doi: "10.1234/qc.2025.002",
-            fileType: "html",
-            filePath: "/articles/sample-article.html"
+            filePath: "/pdfs/NCICCN VOLUME--1.pdf"
           }
         ]
       }
     ]
   }
 ];
-
-function getFileIcon(fileType) {
-  switch(fileType) {
-    case 'pdf':
-      return `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
-      </svg>`;
-    case 'html':
-      return `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z" clip-rule="evenodd" />
-      </svg>`;
-    default:
-      return `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
-      </svg>`;
-  }
-}
 ---
 
 <Layout>
   <Header />
-  
+
   <main class="py-12 bg-gray-50">
     <div class="container mx-auto px-4">
       <h1 class="text-4xl font-bold text-center mb-12">Archives</h1>
-      
-      {archives.map(year => (
+
+      {archives.map((year) => (
         <div class="mb-12">
           <h2 class="text-3xl font-bold mb-6">Year {year.year}</h2>
-          
-          {year.issues.map(issue => (
+
+          {year.issues.map((issue) => (
             <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-              <h3 class="text-2xl font-semibold mb-4">Volume {issue.volume}</h3>
-              
+              <h3 class="text-2xl font-semibold mb-4">Volume {issue.volume}, Issue {issue.issue}</h3>
+
               <div class="space-y-4">
-                {issue.articles.map(article => (
+                {issue.articles.map((article) => (
                   <div class="border-b border-gray-200 pb-4 last:border-0 last:pb-0">
                     <h4 class="text-xl font-medium mb-2">
-                      <a href={article.filePath} class="text-primary hover:underline inline-flex items-center" target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={article.filePath}
+                        class="text-primary hover:underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         {article.title}
-                        {getFileIcon(article.fileType)}
                       </a>
                     </h4>
                     <p class="text-gray-600 mb-2">{article.authors}</p>

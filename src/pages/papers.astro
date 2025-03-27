@@ -24,10 +24,10 @@ import Footer from '../components/Footer.astro';
           <button class="px-4 py-2 rounded-full bg-white border border-gray-300 text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-colors">Cloud Computing</button>
         </div>
         
-        <div class="max-w-md mx-auto">
+        <div class="max-w-md mx-auto mb-6">
           <div class="relative">
             <input type="text" placeholder="Search papers..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-            <button class="absolute right-3 top-3">
+            <button class="absolute right-3 top-1/2 -translate-y-1/2">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
@@ -35,127 +35,144 @@ import Footer from '../components/Footer.astro';
           </div>
         </div>
       </div>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+        {/* Image Caption Generator */}
+        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
           <div class="h-48 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb" alt="Quantum Computing Research" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
+            <img src="https://files.codingninjas.in/article_images/image-caption-generator-0-1689021597.webp" alt="Image Caption Generator" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
           </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Advancements in Quantum Computing for Secure Communications</h3>
-            <p class="text-gray-600 mb-3">Dr. Jane Smith, Dr. Robert Johnson</p>
-            <p class="text-gray-700 mb-4 line-clamp-3">This paper explores the latest advancements in quantum computing and their applications in secure communication systems.</p>
+          <div class="p-6 flex-grow flex flex-col">
+            <h3 class="text-xl font-semibold mb-2 h-16 line-clamp-2">IMAGE CAPTION GENERATOR</h3>
+            <p class="text-gray-600 mb-3 h-12">
+              Asst. professor: Srinath Reddy CH<br>
+              Gourishetti Nandini, Jilla Varsha Sri, Chennarapu Sarika
+            </p>
+            <p class="text-gray-700 mb-4 line-clamp-3 flex-grow">
+              This paper explores Image Caption Generation, a process that automatically labels images with descriptive words.
+            </p>
             <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Quantum Computing</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Cybersecurity</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Communication Systems</span>
-            </div>
-            <a href="/articles/quantum-physics-basics.html">
-              <button class="inline-block px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
-                  Read Paper
-              </button>
-          </a>   
-          </div>
-        </div>
-
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
-          <div class="h-48 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31" alt="Machine Learning Research" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Machine Learning Approaches for Network Traffic Analysis</h3>
-            <p class="text-gray-600 mb-3">Prof. Michael Chen, Dr. Lisa Wang</p>
-            <p class="text-gray-700 mb-4 line-clamp-3">A comprehensive study on applying various machine learning techniques to analyze and classify network traffic patterns.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Machine Learning</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Network Security</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Traffic Analysis</span>
-            </div>
-            <a href="/articles/caption.html">
-              <button class="inline-block px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
-                  Read Paper
-              </button>
-          </a>   
-          </div>
-        </div>
-
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
-          <div class="h-48 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a" alt="Blockchain Research" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Blockchain-based Solutions for Supply Chain Management</h3>
-            <p class="text-gray-600 mb-3">Dr. Alex Rodriguez, Prof. Sarah Kim</p>
-            <p class="text-gray-700 mb-4 line-clamp-3">This research presents novel blockchain architectures designed to enhance transparency and security in supply chain management systems.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Blockchain</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Supply Chain</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Distributed Systems</span>
-            </div>
-            <button class="inline-block px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
-              Read Paper
-            </button>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
-          <div class="h-48 overflow-hidden">
-            <img src="https://www.cuelogic.com/wp-content/uploads/2021/06/IOT-and-edge-computing.jpg" alt="Edge Computing Research" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Edge Computing Frameworks for IoT Applications</h3>
-            <p class="text-gray-600 mb-3">Prof. David Lee, Dr. Emily Wilson</p>
-            <p class="text-gray-700 mb-4 line-clamp-3">An analysis of edge computing frameworks and their effectiveness in processing data from Internet of Things devices.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Edge Computing</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">IoT</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Distributed Computing</span>
-            </div>
-            <button class="inline-block px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
-              Read Paper
-            </button>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
-          <div class="h-48 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef" alt="Neural Networks Research" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Neural Networks for Natural Language Processing in Healthcare</h3>
-            <p class="text-gray-600 mb-3">Dr. Maria Garcia, Prof. Thomas Brown</p>
-            <p class="text-gray-700 mb-4 line-clamp-3">This paper presents innovative neural network architectures for processing medical text data and extracting valuable insights.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Computer Vision</span>
+              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Deep Learning</span>
               <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Neural Networks</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">NLP</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Healthcare</span>
             </div>
-            <button class="inline-block px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
-              Read Paper
-            </button>
+            <a href="/pdfs/Article 1.pdf" class="mt-auto">
+              <button class="inline-block w-full px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
+                Read Paper
+              </button>
+            </a>   
           </div>
         </div>
 
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+        {/* Suspicious Activity Detection */}
+        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
           <div class="h-48 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd" alt="Cryptography Research" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
+            <img src="https://www.altexsoft.com/static/blog-post-featured/2023/10/1c51eb5b-4f95-4d34-9a9d-86d66d7c6e78.jpg" alt="Suspicious Activity Detection" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
           </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Secure Multi-party Computation for Privacy-Preserving Data Analysis</h3>
-            <p class="text-gray-600 mb-3">Prof. Jennifer Adams, Dr. Richard Taylor</p>
-            <p class="text-gray-700 mb-4 line-clamp-3">An exploration of secure multi-party computation protocols that enable collaborative data analysis while preserving privacy.</p>
+          <div class="p-6 flex-grow flex flex-col">
+            <h3 class="text-xl font-semibold mb-2 h-16 line-clamp-2">SUSPICIOUS ACTIVITY DETECTION</h3>
+            <p class="text-gray-600 mb-3 h-12">
+              Kanchanapally Keerthi, Kadari Sreeya<br>
+              Racharla Abhinaya, Budidha Malathi
+            </p>
+            <p class="text-gray-700 mb-4 line-clamp-3 flex-grow">
+              The paper focuses on automating video surveillance to detect unusual or suspicious activities.
+            </p>
             <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Cryptography</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Privacy</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Data Analysis</span>
+              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Surveillance</span>
+              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Video Analysis</span>
+              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Real-Time Monitoring</span>
             </div>
-            <button class="inline-block px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
-              Read Paper
-            </button>
+            <a href="/pdfs/Article 2.pdf" class="mt-auto">
+              <button class="inline-block w-full px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
+                Read Paper
+              </button>
+            </a>   
+          </div>
+        </div>
+
+        {/* Brain Tumor Detection */}
+        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
+          <div class="h-48 overflow-hidden">
+            <img src="https://assets.technologynetworks.com/production/dynamic/images/content/354432/early-detection-of-brain-tumors-and-beyond-354432-1280x720.webp?cb=13244513" alt="Brain Tumor Detection" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
+          </div>
+          <div class="p-6 flex-grow flex flex-col">
+            <h3 class="text-xl font-semibold mb-2 h-16 line-clamp-2">Integrating VGG-16 And CNN For Brain Tumor Detection</h3>
+            <p class="text-gray-600 mb-3 h-12">
+              Assistant Professor: Dr G Yogesh<br>
+              Seelam Keerthi, Yeruva Pravalika, Dugyala Srinitha
+            </p>
+            <p class="text-gray-700 mb-4 line-clamp-3 flex-grow">
+              This paper focuses on using deep learning techniques to improve the accuracy of brain tumor detection from MRI scans.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Deep Learning</span>
+              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Brain Tumor Detection</span>
+              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">VGG-16</span>
+            </div>
+            <a href="/pdfs/Article 3.pdf" class="mt-auto">
+              <button class="inline-block w-full px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
+                Read Paper
+              </button>
+            </a>   
+          </div>
+        </div>
+
+        {/* Student Learning Patterns */}
+        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
+          <div class="h-48 overflow-hidden">
+            <img src="https://xiengineering.com/wp-content/uploads/2023/10/AdobeStock_519767884-1-scaled.jpeg" alt="Student Learning Patterns" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
+          </div>
+          <div class="p-6 flex-grow flex flex-col">
+            <h3 class="text-xl font-semibold mb-2 h-16 line-clamp-2">Evaluating the Learning Patterns and Analyzing Efficiency in Students using Machine Learning Algorithms</h3>
+            <p class="text-gray-600 mb-3 h-12">
+              Asst. Professor: G Thirupathi<br>
+              MD Altaf, Peddireddy Shiva Reddy, Polasi Praneeth
+            </p>
+            <p class="text-gray-700 mb-4 line-clamp-3 flex-grow">
+              This paper explores the evaluation of student learning patterns and efficiency analysis using machine learning algorithms.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Machine Learning in Education</span>
+              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Student Learning Behavior</span>
+              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Supervised Learning Algorithms</span>
+            </div>
+            <a href="/pdfs/Article 4.pdf" class="mt-auto">
+              <button class="inline-block w-full px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
+                Read Paper
+              </button>
+            </a>   
+          </div>
+        </div>
+
+        {/* Smart Health Assistant */}
+        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
+          <div class="h-48 overflow-hidden">
+            <img src="https://d2jx2rerrg6sh3.cloudfront.net/images/Article_Images/ImageForArticle_24532_17066301121638048.jpg" alt="Smart Health Assistant" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
+          </div>
+          <div class="p-6 flex-grow flex flex-col">
+            <h3 class="text-xl font-semibold mb-2 h-16 line-clamp-2">Smart Health Assistant: Integrating Machine Learning for Disease Prediction from Symptoms through Advanced Modelling</h3>
+            <p class="text-gray-600 mb-3 h-12">
+              Asst. Professor: Mr. D Ram Babu<br>
+              Koleti Ajay, Aleti Dheeraj Kumar, Kotha Rohith Reddy
+            </p>
+            <p class="text-gray-700 mb-4 line-clamp-3 flex-grow">
+              This paper explores the application of machine learning models for disease prediction based on patient symptoms.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Machine Learning in Healthcare</span>
+              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Disease Prediction</span>
+              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Healthcare AI</span>
+            </div>
+            <a href="/pdfs/Article 5.pdf" class="mt-auto">
+              <button class="inline-block w-full px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
+                Read Paper
+              </button>
+            </a>   
           </div>
         </div>
       </div>
-      
+        
       <div class="mt-12 flex justify-center">
         <nav class="inline-flex rounded-md shadow">
           <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-l-md hover:bg-gray-50">Previous</a>
@@ -170,3 +187,13 @@ import Footer from '../components/Footer.astro';
   
   <Footer />
 </Layout>
+
+<style>
+  /* Ensure consistent height for titles and descriptions */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
