@@ -2,6 +2,103 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+// Research papers data
+const papers = [
+  {
+    id: 1,
+    title: 'IMAGE CAPTION GENERATOR',
+    authors: 'Gourishetti Nandini, Jilla Varsha Sri, Chennarapu Sarika',
+    professor: 'Asst. professor: Srinath Reddy CH',
+    description: 'This paper explores Image Caption Generation, a process that automatically labels images with descriptive words.',
+    categories: ['Computer Vision', 'Deep Learning', 'Neural Networks'],
+    image: 'https://files.codingninjas.in/article_images/image-caption-generator-0-1689021597.webp',
+    pdfLink: '/pdfs/Article 1.pdf'
+  },
+  {
+    id: 2,
+    title: 'SUSPICIOUS ACTIVITY DETECTION',
+    authors: 'Kanchanapally Keerthi, Kadari Sreeya, Racharla Abhinaya, Budidha Malathi',
+    professor: 'Asst. Professor: Not Specified',
+    description: 'The paper focuses on automating video surveillance to detect unusual or suspicious activities.',
+    categories: ['Surveillance', 'Video Analysis', 'Real-Time Monitoring'],
+    image: 'https://www.altexsoft.com/static/blog-post-featured/2023/10/1c51eb5b-4f95-4d34-9a9d-86d66d7c6e78.jpg',
+    pdfLink: '/pdfs/Article 2.pdf'
+  },
+  {
+    id: 3,
+    title: 'Integrating VGG-16 And CNN For Brain Tumor Detection',
+    authors: 'Seelam Keerthi, Yeruva Pravalika, Dugyala Srinitha',
+    professor: 'Assistant Professor: Dr G Yogesh',
+    description: 'This paper focuses on using deep learning techniques to improve the accuracy of brain tumor detection from MRI scans.',
+    categories: ['Deep Learning', 'Brain Tumor Detection', 'VGG-16'],
+    image: 'https://assets.technologynetworks.com/production/dynamic/images/content/354432/early-detection-of-brain-tumors-and-beyond-354432-1280x720.webp?cb=13244513',
+    pdfLink: '/pdfs/Article 3.pdf'
+  },
+  {
+    id: 4,
+    title: 'Evaluating the Learning Patterns',
+    authors: 'MD Altaf, Peddireddy Shiva Reddy, Polasi Praneeth',
+    professor: 'Asst. Professor: G Thirupathi',
+    description: 'This paper explores the evaluation of student learning patterns and efficiency analysis using machine learning algorithms.',
+    categories: ['Machine Learning in Education', 'Student Learning Behavior', 'Supervised Learning Algorithms'],
+    image: 'https://xiengineering.com/wp-content/uploads/2023/10/AdobeStock_519767884-1-scaled.jpeg',
+    pdfLink: '/pdfs/Article 4.pdf'
+  },
+  {
+    id: 5,
+    title: 'Smart Health Assistant',
+    authors: 'Koleti Ajay, Aleti Dheeraj Kumar, Kotha Rohith Reddy',
+    professor: 'Asst. Professor: Mr. D Ram Babu',
+    description: 'This paper explores the application of machine learning models for disease prediction based on patient symptoms.',
+    categories: ['Machine Learning in Healthcare', 'Disease Prediction', 'Healthcare AI'],
+    image: 'https://d2jx2rerrg6sh3.cloudfront.net/images/Article_Images/ImageForArticle_24532_17066301121638048.jpg',
+    pdfLink: '/pdfs/Article 5.pdf'
+  }
+];
+
+// Available categories
+const categories = [
+  'All', 
+  'Quantum Computing', 
+  'Machine Learning', 
+  'Blockchain', 
+  'Edge Computing', 
+  'Neural Networks', 
+  'Cryptography', 
+  'Autonomous Vehicles', 
+  'Cloud Computing',
+  'Computer Vision',
+  'Deep Learning',
+  'Surveillance',
+  'Video Analysis',
+  'Brain Tumor Detection',
+  'Machine Learning in Education',
+  'Healthcare AI',
+  'Disease Prediction'
+];
+
+// Server-side filtering function
+function filterPapers(papers, category, searchTerm) {
+  return papers.filter(paper => {
+    // Category filter
+    const categoryMatch = category === 'All' || 
+      paper.categories.some(cat => cat.toLowerCase() === category.toLowerCase());
+    
+    // Search term filter
+    const searchMatch = !searchTerm || 
+      paper.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      paper.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      paper.categories.some(cat => cat.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    return categoryMatch && searchMatch;
+  });
+}
+
+// Initial filtering with default values
+const initialCategory = Astro.url.searchParams.get('category') || 'All';
+const initialSearchTerm = Astro.url.searchParams.get('search') || '';
+const filteredPapers = filterPapers(papers, initialCategory, initialSearchTerm);
 ---
 
 <Layout>
@@ -12,22 +109,27 @@ import Footer from '../components/Footer.astro';
       <h1 class="text-4xl font-bold mb-8 text-center">Research Papers</h1>
       
       <div class="mb-8">
-        <div class="flex flex-wrap justify-center gap-3 mb-6">
-          <button class="px-4 py-2 rounded-full bg-white border border-gray-300 text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-colors">All</button>
-          <button class="px-4 py-2 rounded-full bg-white border border-gray-300 text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-colors">Quantum Computing</button>
-          <button class="px-4 py-2 rounded-full bg-white border border-gray-300 text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-colors">Machine Learning</button>
-          <button class="px-4 py-2 rounded-full bg-white border border-gray-300 text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-colors">Blockchain</button>
-          <button class="px-4 py-2 rounded-full bg-white border border-gray-300 text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-colors">Edge Computing</button>
-          <button class="px-4 py-2 rounded-full bg-white border border-gray-300 text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-colors">Neural Networks</button>
-          <button class="px-4 py-2 rounded-full bg-white border border-gray-300 text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-colors">Cryptography</button>
-          <button class="px-4 py-2 rounded-full bg-white border border-gray-300 text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-colors">Autonomous Vehicles</button>
-          <button class="px-4 py-2 rounded-full bg-white border border-gray-300 text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-colors">Cloud Computing</button>
+        <div class="flex flex-wrap justify-center gap-3 mb-6" id="category-buttons">
+          {categories.map((category) => (
+            <button 
+              data-category={category}
+              class={`px-4 py-2 rounded-full ${initialCategory === category ? 'bg-primary text-white' : 'bg-white border border-gray-300 text-gray-700'} hover:bg-primary hover:text-white hover:border-primary transition-colors category-btn`}
+            >
+              {category}
+            </button>
+          ))}
         </div>
         
         <div class="max-w-md mx-auto mb-6">
           <div class="relative">
-            <input type="text" placeholder="Search papers..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-            <button class="absolute right-3 top-1/2 -translate-y-1/2">
+            <input 
+              type="text" 
+              id="search-input"
+              placeholder="Search papers..." 
+              value={initialSearchTerm}
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+            <button id="search-button" class="absolute right-3 top-1/2 -translate-y-1/2">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
@@ -36,141 +138,40 @@ import Footer from '../components/Footer.astro';
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {/* Image Caption Generator */}
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
-          <div class="h-48 overflow-hidden">
-            <img src="https://files.codingninjas.in/article_images/image-caption-generator-0-1689021597.webp" alt="Image Caption Generator" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
-          </div>
-          <div class="p-6 flex-grow flex flex-col">
-            <h3 class="text-xl font-semibold mb-2 h-16 line-clamp-2">IMAGE CAPTION GENERATOR</h3>
-            <p class="text-gray-600 mb-3 h-12">
-              Asst. professor: Srinath Reddy CH<br>
-              Gourishetti Nandini, Jilla Varsha Sri, Chennarapu Sarika
-            </p>
-            <p class="text-gray-700 mb-4 line-clamp-3 flex-grow">
-              This paper explores Image Caption Generation, a process that automatically labels images with descriptive words.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Computer Vision</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Deep Learning</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Neural Networks</span>
+      <div id="papers-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {filteredPapers.map((paper) => (
+          <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
+            <div class="h-48 overflow-hidden">
+              <img 
+                src={paper.image} 
+                alt={paper.title} 
+                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" 
+              />
             </div>
-            <a href="/pdfs/Article 1.pdf" class="mt-auto">
-              <button class="inline-block w-full px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
-                Read Paper
-              </button>
-            </a>   
-          </div>
-        </div>
-
-        {/* Suspicious Activity Detection */}
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
-          <div class="h-48 overflow-hidden">
-            <img src="https://www.altexsoft.com/static/blog-post-featured/2023/10/1c51eb5b-4f95-4d34-9a9d-86d66d7c6e78.jpg" alt="Suspicious Activity Detection" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
-          </div>
-          <div class="p-6 flex-grow flex flex-col">
-            <h3 class="text-xl font-semibold mb-2 h-16 line-clamp-2">SUSPICIOUS ACTIVITY DETECTION</h3>
-            <p class="text-gray-600 mb-3 h-12">
-              Kanchanapally Keerthi, Kadari Sreeya<br>
-              Racharla Abhinaya, Budidha Malathi
-            </p>
-            <p class="text-gray-700 mb-4 line-clamp-3 flex-grow">
-              The paper focuses on automating video surveillance to detect unusual or suspicious activities.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Surveillance</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Video Analysis</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Real-Time Monitoring</span>
+            <div class="p-6 flex-grow flex flex-col">
+              <h3 class="text-xl font-semibold mb-2 h-16 line-clamp-2">{paper.title}</h3>
+              <p class="text-gray-600 mb-3 h-12">
+                {paper.professor}<br/>
+                {paper.authors}
+              </p>
+              <p class="text-gray-700 mb-4 line-clamp-3 flex-grow">
+                {paper.description}
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                {paper.categories.map((category) => (
+                  <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">
+                    {category}
+                  </span>
+                ))}
+              </div>
+              <a href={paper.pdfLink} class="mt-auto">
+                <button class="inline-block w-full px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
+                  Read Paper
+                </button>
+              </a>   
             </div>
-            <a href="/pdfs/Article 2.pdf" class="mt-auto">
-              <button class="inline-block w-full px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
-                Read Paper
-              </button>
-            </a>   
           </div>
-        </div>
-
-        {/* Brain Tumor Detection */}
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
-          <div class="h-48 overflow-hidden">
-            <img src="https://assets.technologynetworks.com/production/dynamic/images/content/354432/early-detection-of-brain-tumors-and-beyond-354432-1280x720.webp?cb=13244513" alt="Brain Tumor Detection" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
-          </div>
-          <div class="p-6 flex-grow flex flex-col">
-            <h3 class="text-xl font-semibold mb-2 h-16 line-clamp-2">Integrating VGG-16 And CNN For Brain Tumor Detection</h3>
-            <p class="text-gray-600 mb-3 h-12">
-              Assistant Professor: Dr G Yogesh<br>
-              Seelam Keerthi, Yeruva Pravalika, Dugyala Srinitha
-            </p>
-            <p class="text-gray-700 mb-4 line-clamp-3 flex-grow">
-              This paper focuses on using deep learning techniques to improve the accuracy of brain tumor detection from MRI scans.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Deep Learning</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Brain Tumor Detection</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">VGG-16</span>
-            </div>
-            <a href="/pdfs/Article 3.pdf" class="mt-auto">
-              <button class="inline-block w-full px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
-                Read Paper
-              </button>
-            </a>   
-          </div>
-        </div>
-
-        {/* Student Learning Patterns */}
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
-          <div class="h-48 overflow-hidden">
-            <img src="https://xiengineering.com/wp-content/uploads/2023/10/AdobeStock_519767884-1-scaled.jpeg" alt="Student Learning Patterns" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
-          </div>
-          <div class="p-6 flex-grow flex flex-col">
-            <h3 class="text-xl font-semibold mb-2 h-16 line-clamp-2">Evaluating the Learning Patterns </h3>
-            <p class="text-gray-600 mb-3 h-12">
-              Asst. Professor: G Thirupathi<br>
-              MD Altaf, Peddireddy Shiva Reddy, Polasi Praneeth
-            </p>
-            <p class="text-gray-700 mb-4 line-clamp-3 flex-grow">
-              This paper explores the evaluation of student learning patterns and efficiency analysis using machine learning algorithms.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Machine Learning in Education</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Student Learning Behavior</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Supervised Learning Algorithms</span>
-            </div>
-            <a href="/pdfs/Article 4.pdf" class="mt-auto">
-              <button class="inline-block w-full px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
-                Read Paper
-              </button>
-            </a>   
-          </div>
-        </div>
-
-        {/* Smart Health Assistant */}
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
-          <div class="h-48 overflow-hidden">
-            <img src="https://d2jx2rerrg6sh3.cloudfront.net/images/Article_Images/ImageForArticle_24532_17066301121638048.jpg" alt="Smart Health Assistant" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
-          </div>
-          <div class="p-6 flex-grow flex flex-col">
-            <h3 class="text-xl font-semibold mb-2 h-16 line-clamp-2">Smart Health Assistant</h3>
-            <p class="text-gray-600 mb-3 h-12">
-              Asst. Professor: Mr. D Ram Babu<br>
-              Koleti Ajay, Aleti Dheeraj Kumar, Kotha Rohith Reddy
-            </p>
-            <p class="text-gray-700 mb-4 line-clamp-3 flex-grow">
-              This paper explores the application of machine learning models for disease prediction based on patient symptoms.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Machine Learning in Healthcare</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Disease Prediction</span>
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Healthcare AI</span>
-            </div>
-            <a href="/pdfs/Article 5.pdf" class="mt-auto">
-              <button class="inline-block w-full px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-opacity">
-                Read Paper
-              </button>
-            </a>   
-          </div>
-        </div>
+        ))}
       </div>
         
       <div class="mt-12 flex justify-center">
@@ -187,6 +188,69 @@ import Footer from '../components/Footer.astro';
   
   <Footer />
 </Layout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
+
+    // Category button click handler
+    categoryButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active state from all buttons
+        categoryButtons.forEach(btn => {
+          btn.classList.remove('bg-primary', 'text-white');
+          btn.classList.add('bg-white', 'border', 'border-gray-300', 'text-gray-700');
+        });
+
+        // Add active state to clicked button
+        button.classList.remove('bg-white', 'border', 'border-gray-300', 'text-gray-700');
+        button.classList.add('bg-primary', 'text-white');
+
+        // Update URL and reload with selected category
+        const category = button.getAttribute('data-category');
+        const searchTerm = searchInput.value;
+        updateUrlAndReload(category, searchTerm);
+      });
+    });
+
+    // Search button and enter key handler
+    const performSearch = () => {
+      const currentCategory = document.querySelector('.category-btn.bg-primary').getAttribute('data-category');
+      const searchTerm = searchInput.value;
+      updateUrlAndReload(currentCategory, searchTerm);
+    };
+
+    searchButton.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        performSearch();
+      }
+    });
+
+    // Function to update URL and reload with filters
+    function updateUrlAndReload(category, searchTerm) {
+      const url = new URL(window.location.href);
+      
+      // Update or remove search params
+      if (category && category !== 'All') {
+        url.searchParams.set('category', category);
+      } else {
+        url.searchParams.delete('category');
+      }
+
+      if (searchTerm) {
+        url.searchParams.set('search', searchTerm);
+      } else {
+        url.searchParams.delete('search');
+      }
+
+      // Reload with new URL
+      window.location.href = url.toString();
+    }
+  });
+</script>
 
 <style>
   /* Ensure consistent height for titles and descriptions */
