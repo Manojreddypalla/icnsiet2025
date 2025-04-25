@@ -1,96 +1,113 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+// filepath: c:\Users\Manoj\Documents\GitHub\college-web-project\src\pages\editorial-board.astro
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 const editorialBoard = [
-  
-{
+  {
+    id: 1,
+    name: "Rajkumar Buyya",
+    role: "Professor",
+    institution:
+      "School of Computing and Information Systems, The University of Melbourne",
+    email: "rbuyya@unimelb.edu.au",
+    expertise: ["Software Engineering", "Data Mining", "Big Data"],
+  },
+  {
+    id: 2,
     name: "Marco Aiello",
     role: "Head of Department (Service Computing)",
-    institution: "Institute for Architecture of Application Systems(University of Stuttgart,Germany)",
-    email: " marco.aiello@iaas.uni-stuttgart.de  ",
-    expertise: ["Software Engineering", "Data Mining", "Big Data"]
-  },
- 
-  {
-    name: "Dr. Aruna Varanasi",
-    role: "Professor and Head – Department of Computer Science Engineering",
-    institution: "Sreenidhi Institute of Science and Technology, Hyderabad",
-    email: "hod-cse@sreenidhi.edu.in",
-    expertise: ["Cybersecurity", "Network Protocols", "Privacy"]
+    institution:
+      "Institute for Architecture of Application Systems (University of Stuttgart, Germany)",
+    email: "marco.aiello@iaas.uni-stuttgart.de",
+    expertise: ["Software Engineering", "Data Mining", "Big Data"],
   },
   {
-    name: "Dr. Halavath Balaji",
-    role: "Professor",
-    institution: "Sreenidhi Institute of Science and Technology, Hyderabad",
-    email: "balaji.h@sreenidhi.edu.in",
-    expertise: ["IoT", "Embedded Systems", "Wireless Networks"]
-  },
-  {
-    name: " Rajkumar Buyya",
-    role: " Professor",
-    institution: "School of Computing and Information Systems ,The University of Melbourne",
-    email: "rbuyya@unimelb.edu.au ",
-    expertise: ["Software Engineering", "Data Mining", "Big Data"]
-  },
-  {
+    id: 3,
     name: "Dr. Chandrashekar Jatoth",
     role: "Assistant Professor",
     institution: "Information Technology, NIT Raipur",
     email: "chandrashekar.jatoth@gmail.com",
-    expertise: ["Quantum Computing", "Information Theory", "Cryptography"]
+    expertise: ["Quantum Computing", "Information Theory", "Cryptography"],
   },
-  
   {
+    id: 4,
     name: "Mettu Srinivas",
     role: "Assistant Professor",
     institution: "Department of Computer Science and Engineering, NIT Warangal",
     email: "msv@nitw.ac.in",
-    expertise: ["Software Engineering", "Data Mining", "Big Data"]
+    expertise: ["Software Engineering", "Data Mining", "Big Data"],
   },
   {
-    name: " Dr. Bukya Raju",
+    id: 5,
+    name: "Dr. Bukya Raju",
     role: "Assistant Professor",
-    institution: "Department of Computer Science and Engineering,NIT Jalandhar",
+    institution:
+      "Department of Computer Science and Engineering, NIT Jalandhar",
     email: "raju@nitw.ac.in",
-    expertise: ["Software Engineering", "Data Mining", "Big Data"]
+    expertise: ["Software Engineering", "Data Mining", "Big Data"],
   },
- 
   {
+    id: 6,
     name: "Dr. Rajneesh Rani",
     role: "Assistant Professor",
     institution: "Department of Computer Science and Engineering, NIT Warangal",
-    email: " ranir@nitj.ac.in ",
-    expertise: ["Software Engineering", "Data Mining", "Big Data"]
+    email: "ranir@nitj.ac.in",
+    expertise: ["Software Engineering", "Data Mining", "Big Data"],
   },
- 
+  {
+    id: 7,
+    name: "Dr. Aruna Varanasi",
+    role: "Professor and Head – Department of Computer Science Engineering",
+    institution: "Sreenidhi Institute of Science and Technology, Hyderabad",
+    email: "hod-cse@sreenidhi.edu.in",
+    expertise: ["Cybersecurity", "Network Protocols", "Privacy"],
+  },
+  {
+    id: 8,
+    name: "Dr. Halavath Balaji",
+    role: "Professor",
+    institution: "Sreenidhi Institute of Science and Technology, Hyderabad",
+    email: "balaji.h@sreenidhi.edu.in",
+    expertise: ["IoT", "Embedded Systems", "Wireless Networks"],
+  },
 ];
 ---
 
 <Layout>
   <Header />
-  
+
   <main class="py-12 bg-gray-50">
     <div class="container mx-auto px-4">
       <h1 class="text-4xl font-bold text-center mb-12">Editorial Board</h1>
-      
+
       <div class="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
-        {editorialBoard.map(member => (
-          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-2">{member.name}</h2>
-            <p class="text-primary font-medium mb-2">{member.role}</p>
-            <div class="space-y-2 text-gray-600">
-              <p>{member.institution}</p>
-              <p>Email: <a href={`mailto:${member.email}`} class="text-primary hover:underline">{member.email}</a></p>
+        {
+          editorialBoard.map((member) => (
+            <div
+              id={`member-${member.id}`}
+              class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
+            >
+              <h2 class="text-2xl font-semibold text-gray-800 mb-2">
+                {member.id}. {member.name}
+              </h2>
+              <p class="text-primary font-medium mb-2">{member.role}</p>
+              <div class="space-y-2 text-gray-600">
+                <p>{member.institution}</p>
+                <p>
+                  Email:{" "}
+                  <a
+                    href={`mailto:${member.email}`}
+                    class="text-primary hover:underline"
+                  >
+                    {member.email}
+                  </a>
+                </p>
+              </div>
             </div>
-            {/* <div class="mt-4 flex flex-wrap gap-2">
-              {member.expertise.map(area => (
-                <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">{area}</span>
-              ))}
-            </div> */}
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </main>
