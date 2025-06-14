@@ -1,16 +1,14 @@
 ---
-// SimpleCountdown.astro
+// CountdownGlassyLight.astro
 ---
-<section class="text-center py-12 bg-white min-h-[60vh] flex flex-col items-center justify-center">
-  <h2 class="text-5xl font-extrabold mb-8 text-purple-600 tracking-wide">TIME REMAINING</h2>
+<section class="h-[500px] flex flex-col items-center justify-center bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 text-gray-900 p-6 transition-all duration-500 ease-in-out" id="background">
+  <h2 class="text-4xl font-extrabold mb-8 tracking-wider text-purple-700 drop-shadow-md">TIME REMAINING</h2>
 
-  <div id="countdown" class="flex justify-center space-x-6">
+  <div id="countdown" class="flex justify-center flex-wrap gap-6">
     {['days', 'hours', 'minutes', 'seconds'].map((unit) => (
-      <div class="flex flex-col items-center" key={unit}>
-        <div class="flip-card bg-purple-700 text-white text-4xl font-bold w-20 h-24 flex items-center justify-center rounded-xl shadow-lg transition-transform duration-500 ease-in-out" id={unit}>
-          00
-        </div>
-        <div class="mt-2 text-purple-700 tracking-widest">{unit.toUpperCase()}</div>
+      <div class="glass-card flex flex-col items-center justify-center w-20 h-24 rounded-2xl shadow-xl backdrop-blur-lg bg-white/50 border border-purple-200 cursor-pointer" key={unit} onMouseOver={() => shiftBackground()} onMouseOut={() => resetBackground()}>
+        <div class="text-4xl font-bold mb-1 transition-transform duration-300 ease-in-out text-purple-700" id={unit}>00</div>
+        <div class="text-sm tracking-widest uppercase text-purple-500">{unit}</div>
       </div>
     ))}
   </div>
@@ -19,10 +17,7 @@
 <script>
   function updateCountdown() {
     const now = new Date();
-    const targetDate = new Date();
-    targetDate.setDate(now.getDate() + 40); // Change as per your target event
-    targetDate.setHours(0, 0, 0, 0);
-
+    const targetDate = new Date('December 1, 2025 00:00:00');
     const timeLeft = targetDate.getTime() - now.getTime();
 
     const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
@@ -49,31 +44,35 @@
     }
   }
 
+  function shiftBackground() {
+    const bg = document.getElementById('background');
+    bg.style.background = 'linear-gradient(135deg, #d3cce3, #e9e4f0)';
+  }
+
+  function resetBackground() {
+    const bg = document.getElementById('background');
+    bg.style.background = 'linear-gradient(to bottom right, #f3f4f6, #e5e7eb, #d1d5db)';
+  }
+
   setInterval(updateCountdown, 1000);
   updateCountdown();
 </script>
 
 <style>
-  .flip-card {
-    transition: transform 0.3s ease;
+  .glass-card {
+    transition: transform 0.4s ease, background 0.4s ease;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(168, 85, 247, 0.2); /* light purple border */
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .glass-card:hover {
+    transform: scale(1.1);
+    background: rgba(236, 222, 255, 0.5);
   }
 
   .scale-125 {
     transform: scale(1.25);
-  }
-
-  .card-background {
-    width: 400px;
-    height: 400px;
-    background: linear-gradient(135deg, #5a6cff 0%, #a259e6 100%);
-    border-radius: 20px;
-    padding: 32px;
-    box-sizing: border-box;
-  }
-
-  .card-background h2,
-  .card-background p,
-  .card-background li {
-    font-size: 18px;
   }
 </style>
