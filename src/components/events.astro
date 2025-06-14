@@ -3,37 +3,37 @@
 const eventImages = [
   {
     src: "https://github.com/Manojreddypalla/images/blob/main/BPS_0307.jpg?raw=true",
-    alt: "Annual Tech Summit 2024",
-    title: "Tech Summit",
-    date: "March 2024",
+    alt: "",
+    title: "",
+    date: "",
     category: "Conference"
   },
   {
-    src: "https://github.com/Manojreddypalla/images/blob/main/four.png?raw=true",
-    alt: "Cultural Festival Celebration",
-    title: "Cultural Fest",
-    date: "February 2024",
+    src: "https://github.com/icnsiet/icnsiet2025/blob/main/src/pic/2.jpg?raw=true",
+    // alt: "Cultural Festival Celebration",
+    // title: "Cultural Fest",
+    // date: "February 2024",
     category: "Conference"
   },
   {
-    src: "https://github.com/Manojreddypalla/images/blob/main/one.png?raw=true",
-    alt: "Innovation Showcase Event",
-    title: "Innovation Day",
-    date: "January 2024",
+    src: "/pic/3.jpg",
+    // alt: "Innovation Showcase Event",
+    // title: "Innovation Day",
+    // date: "January 2024",
     category: "Conference"
   },
   {
-    src: "https://github.com/Manojreddypalla/images/blob/main/three.png?raw=true",
-    alt: "Sports Championship Finals",
-    title: "Sports Meet",
-    date: "December 2023",
+    src: "https://github.com/icnsiet/icnsiet2025/blob/main/src/pic/4.jpg?raw=true",
+    // alt: "Sports Championship Finals",
+    // title: "Sports Meet",
+    // date: "December 2023",
     category: "Conference"
   },
   {
     src: "https://github.com/Manojreddypalla/images/blob/main/two.png?raw=true",
-    alt: "Academic Excellence Awards",
-    title: "Awards Ceremony",
-    date: "November 2023",
+    // alt: "Academic Excellence Awards",
+    // title: "Awards Ceremony",
+    // date: "November 2023",
     category: "Conference"
   }
 ];
@@ -58,7 +58,7 @@ const eventImages = [
           <div class="gallery-card" data-index={index}>
             <div class="card-inner">
               <div class="image-container">
-                <img src={image.src} alt={image.alt} loading="lazy" />
+                <img src={image.src} alt={image.alt} loading="lazy" class="square-img"/>
                 <div class="image-overlay">
                   <div class="overlay-content">
                     <span class="category-tag">{image.category}</span>
@@ -481,6 +481,14 @@ const eventImages = [
     .gallery-wrapper {
       gap: 1rem;
     }
+  }
+
+  .square-img {
+    width: 200px;      /* or any size you want */
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px; /* optional, for rounded corners */
+    display: block;
   }
 </style>
 
