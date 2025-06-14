@@ -6,22 +6,958 @@ import Footer from '../components/Footer.astro';
 
 <Layout>
   <Header />
-
-  <!-- <section class="card">
-    <h2>Register for ICNSIET 2025</h2>
-    <p>
-      Join us for the premier international conference on advanced computing and communication systems.
-    </p>
-    <ul>
-      <li>✔️ Present your research</li>
-      <li>✔️ Network with experts</li>
-      <li>✔️ Attend workshops</li>
-      <li>✔️ Publication opportunities</li>
-    </ul>
-    <div class="card-temp-placeholder">
-      🚧 Exciting updates coming soon! Stay tuned for surprises at ICNSIET 2025. 🚀
+  
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Organizing Committee</h1>
+      <p class="hero-subtitle">Meet the distinguished leaders behind our conference</p>
+      <div class="hero-decoration"></div>
     </div>
-  </section> -->
+  </section>
+
+  <!-- Chief Patrons Section -->
+  <section class="chief-patrons-section">
+    <div class="container">
+      <h2 class="section-title">Chief Patrons</h2>
+      <div class="chief-patrons-grid">
+        <div class="chief-patron-card">
+          <div class="card-glow"></div>
+          <div class="patron-image">
+            <img src="/profiles/KT Mahhe.jpg" alt="Dr. K. T. Mahi" />
+          </div>
+          <div class="patron-info">
+            <h3>Dr. K. T. Mahi</h3>
+            <p class="position">Chairman</p>
+          </div>
+        </div>
+        
+        <div class="chief-patron-card">
+          <div class="card-glow"></div>
+          <div class="patron-image">
+            <img src="/profiles/abhijith rao.png" alt="Mr. K. Abhijit Rao" />
+          </div>
+          <div class="patron-info">
+            <h3>Mr. K. Abhijit Rao</h3>
+            <p class="position">Chief Executive Officer</p>
+          </div>
+        </div>
+        
+        <div class="chief-patron-card">
+          <div class="card-glow"></div>
+          <div class="patron-image">
+            <img src="/profiles/narasimha reddy.png" alt="Dr. Poreddy Narasimha Reddy" />
+          </div>
+          <div class="patron-info">
+            <h3>Dr. Poreddy Narasimha Reddy</h3>
+            <p class="position">Executive Director</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Patrons Section -->
+  <section class="patrons-section">
+    <div class="container">
+      <h2 class="section-title">Patrons</h2>
+      <div class="patrons-grid">
+        <div class="patron-card">
+          <div class="patron-image-small">
+            <img src="/profiles/shiva reddy.jpeg.jpg" alt="Dr. T. CH. Siva Reddy" />
+          </div>
+          <div class="patron-info-small">
+            <h4>Dr. T. CH. Siva Reddy</h4>
+            <p>Principal SNIST</p>
+          </div>
+        </div>
+        
+        <div class="patron-card">
+          <div class="patron-image-small">
+            <img src="/profiles/s200_aruna_varanasi._ph.d._.jpeg.jpg" alt="Dr. Aruna Varanasi" />
+          </div>
+          <div class="patron-info-small">
+            <h4>Dr. Aruna Varanasi</h4>
+            <p>Dean of CSE & Training</p>
+          </div>
+        </div>
+        
+        <div class="patron-card">
+          <div class="patron-image-small">
+            <img src="/profiles/shirisha.jpg" alt="Dr. K. Sireesha" />
+          </div>
+          <div class="patron-info-small">
+            <h4>Dr. K. Sireesha</h4>
+            <p>HOD, Department of CSE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- General Chairs Section -->
+  <section class="general-chairs-section">
+    <div class="container">
+      <h2 class="section-title">Organizing Committee</h2>
+      <div class="chairs-grid">
+        <div class="chair-card">
+          <div class="chair-image">
+            <img src="/profiles/4.jpg" alt="Dr. Halavath Balaji" />
+          </div>
+          <div class="chair-info">
+            <h3>Dr. Halavath Balaji</h3>
+            <p class="position">Professor</p>
+            <p class="institution">SNIST, Hyderabad, India</p>
+          </div>
+        </div>
+        
+         <div class="chair-card">
+          <div class="chair-image">
+            <img src="/profiles/s200_aruna_varanasi._ph.d._.jpeg.jpg" alt="Dr. Aruna Varanasi" />
+          </div>
+          <div class="chair-info">
+            <h3>Dr. Aruna Varanasi</h3>
+            <p class="position">Professor, Dean & Training</p>
+            <p class="institution">SNIST, Hyderabad, India</p>
+          </div>
+        </div> 
+        
+         <div class="chair-card">
+          <div class="chair-image">
+            <img src="/profiles/shirisha.jpg" alt="Dr. K. Shirisha" />
+          </div>
+          <div class="chair-info">
+            <h3>Dr. K. Shirisha</h3>
+            <p class="position">Professor, HOD-CSE</p>
+            <p class="institution">SNIST, Hyderabad, India</p>
+          </div>
+        </div> 
+      </div>
+    </div>
+  </section>
+
+  <!-- Program Chairs Section -->
+  <section class="program-chairs-section">
+    <div class="container">
+      <h2 class="section-title">Program Chairs</h2>
+      <div class="program-chairs-grid">
+        <div class="program-chair-card">
+          <div class="chair-image">
+            <img src="/profiles/Dr-Mamatha.jpg" alt="Dr. T. Mamatha" />
+          </div>
+          <div class="chair-info">
+            <h3>Dr. T. Mamatha</h3>
+            <p class="position">Associate Professor</p>
+            <p class="institution">SNIST, Hyderabad, India</p>
+          </div>
+        </div>
+        
+        <div class="program-chair-card">
+          <div class="chair-image">
+            <img src="/profiles/Mr-Venkanna.jpg" alt="Dr. G. Venkanna" />
+          </div>
+          <div class="chair-info">
+            <h3>Dr. G. Venkanna</h3>
+            <p class="position">Assistant Professor</p>
+            <p class="institution">SNIST, Hyderabad, India</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Program Committee Section -->
+  <section class="tpc-section">
+    <div class="container">
+      <h2 class="section-title">Technical Program Committee</h2>
+      <div class="tpc-grid">
+        <div class="tpc-card">
+          <div class="tpc-image">
+            <img src="/profiles/Dr. Angshuman Jana.jpg" alt="Dr. Angshuman Jana" />
+          </div>
+          <div class="tpc-info">
+            <h4>Dr. Angshuman Jana</h4>
+            <p>IIIT Guwahati, Assam</p>
+          </div>
+        </div>
+        
+        <div class="tpc-card">
+          <div class="tpc-image">
+            <img src="/profiles/Dr. T. Kishore Kumar.jpeg" alt="Dr. T. Kishore Kumar" />
+          </div>
+          <div class="tpc-info">
+            <h4>Dr. T. Kishore Kumar</h4>
+            <p>NIT Warangal, India</p>
+          </div>
+        </div>
+        
+        <div class="tpc-card">
+          <div class="tpc-image">
+            <img src="/profiles/Dr. V.A Narayana.jpeg" alt="Dr. V.A Narayana" />
+          </div>
+          <div class="tpc-info">
+            <h4>Dr. V.A Narayana</h4>
+            <p>Principal, CMRCET, Hyderabad, India</p>
+          </div>
+        </div>
+        
+        <div class="tpc-card">
+          <div class="tpc-image">
+            <img src="/profiles/Dr K Suresh Babu.jpeg" alt="Dr K Suresh Babu" />
+          </div>
+          <div class="tpc-info">
+            <h4>Dr K Suresh Babu</h4>
+            <p>SIT, JNTUH, Hyderabad, India</p>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        <div class="tpc-card">
+          <div class="tpc-image">
+            <img src="/profiles/Dr. Korra Lakshman Naik.jpeg" alt="Dr. Korra Lakshman Naik" />
+          </div>
+          <div class="tpc-info">
+            <h4>Dr. Korra Lakshman Naik</h4>
+            <p>Scientist-D, NIELIT, Aurangabad, India</p>
+          </div>
+        </div>
+        
+        <div class="tpc-card">
+          <div class="tpc-image">
+            <img src="/profiles/Dr V Prashanthi.png" alt="Dr V Prashanthi" />
+          </div>
+          <div class="tpc-info">
+            <h4>Dr V Prashanthi</h4>
+            <p>GRIET, Hyderabad, India</p>
+          </div>
+        </div>
+        
+        <div class="tpc-card">
+          <div class="tpc-image">
+            <img src="/profiles/Dr Shambasiva Rao.jpeg" alt="Dr Shambasiva Rao" />
+          </div>
+          <div class="tpc-info">
+            <h4>Dr Shambasiva Rao</h4>
+            <p>BJR Govt Degree College, Hyderabad</p>
+          </div>
+        </div>
+        
+        <div class="tpc-card">
+          <div class="tpc-image">
+            <img src="/profiles/Dr Neelima Vontela.png" alt="Dr Neelima Vontela" />
+          </div>
+          <div class="tpc-info">
+            <h4>Dr Neelima Vontela</h4>
+            <p>Jyothishmathi Institute of Technology & Science</p>
+          </div>
+        </div>
+        
+        <div class="tpc-card">
+          <div class="tpc-image">
+            <img src="/profiles/Dr. M. Rama Chandra.jpg" alt="Dr. M. Rama Chandra" />
+          </div>
+          <div class="tpc-info">
+            <h4>Dr. M. Rama Chandra</h4>
+            <p>Associate Professor, SNIST, Hyderabad, India</p>
+          </div>
+        </div>
+        
+        <div class="tpc-card">
+          <div class="tpc-image">
+            <img src="/profiles/Dr. Preethi Jeevan.jpg" alt="Dr. Preethi Jeevan" />
+          </div>
+          <div class="tpc-info">
+            <h4>Dr. Preethi Jeevan</h4>
+            <p>Associate Professor, SNIST, Hyderabad, India</p>
+          </div>
+        </div>
+        
+        <div class="tpc-card">
+          <div class="tpc-image">
+            <img src="/profiles/Dr. V Soumya Devi.jpg" alt="Dr. V Soumya Devi" />
+          </div>
+          <div class="tpc-info">
+            <h4>Dr. V Soumya Devi</h4>
+            <p>Associate Professor, SNIST, Hyderabad, India</p>
+          </div>
+        </div>
+        
+        <div class="tpc-card">
+          <div class="tpc-image">
+            <img src="/profiles/Dr. B.V. Ram Naresh Yadav.jpg" alt="Dr. B.V. Ram Naresh Yadav" />
+          </div>
+          <div class="tpc-info">
+            <h4>Dr. B.V. Ram Naresh Yadav</h4>
+            <p>JNTUH CES, Hyderabad, India</p>
+          </div>
+        </div>
+        
+        <div class="tpc-card">
+          <div class="tpc-image">
+            <img src="/profiles/Dr. A. Narayana Rao.jpg" alt="Dr. A. Narayana Rao" />
+          </div>
+          <div class="tpc-info">
+            <h4>Dr. A. Narayana Rao</h4>
+            <p>NBKRIST, Andhra Pradesh, India</p>
+          </div>
+        </div>
+        
+        <div class="tpc-card">
+          <div class="tpc-image">
+            <img src="/profiles/Dr. A. P. Siva Kumar.jpg" alt="Dr. A. P. Siva Kumar" />
+          </div>
+          <div class="tpc-info">
+            <h4>Dr. A. P. Siva Kumar</h4>
+            <p>JNTUCEA, Andhra Pradesh, India</p>
+          </div>
+        </div>
+        
+        <div class="tpc-card">
+          <div class="tpc-image">
+            <img src="/profiles/Dr. Sumit Mishra.jpg" alt="Dr. Sumit Mishra" />
+          </div>
+          <div class="tpc-info">
+            <h4>Dr. Sumit Mishra</h4>
+            <p>IIIT Guwahati, Assam, India</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Advisory Board Section -->
+  <section class="advisory-section">
+    <div class="container">
+      <h2 class="section-title">Advisory Board</h2>
+      <div class="advisory-grid">
+        <div class="advisory-card">
+          <div class="advisory-image">
+            <img src="/profiles/Dr. Marco Aiello.jpeg" alt="Dr. Marco Aiello" />
+          </div>
+          <div class="advisory-info">
+            <h4>Dr. Marco Aiello</h4>
+            <p>Institute for Architecture of Application Systems</p>
+            <p class="institution">University of Stuttgart, Germany</p>
+          </div>
+        </div>
+        
+        <div class="advisory-card">
+          <div class="advisory-image">
+            <img src = "/profiles/Dr. Bukya Raju.jpeg" alt="Dr. Bukya Raju" />
+          </div>
+          <div class="advisory-info">
+            <h4>Dr. Bukya Raju</h4>
+            <p>NIT Warangal, India</p>
+          </div>
+        </div>
+        
+        <div class="advisory-card">
+          <div class="advisory-image">
+            <img src="/profiles/Dr. Mettu Srinivas.jpeg" alt="Dr. Mettu Srinivas" />
+          </div>
+          <div class="advisory-info">
+            <h4>Dr. Mettu Srinivas</h4>
+            <p>NIT Warangal, India</p>
+          </div>
+        </div>
+        
+        <div class="advisory-card">
+          <div class="advisory-image">
+            <img src="/profiles/Dr. Rajneesh Rani.jpg" alt="Dr. Rajneesh Rani" />
+          </div>
+          <div class="advisory-info">
+            <h4>Dr. Rajneesh Rani</h4>
+            <p>NIT Jalandhar, India</p>
+          </div>
+        </div>
+        
+        <div class="advisory-card">
+          <div class="advisory-image">
+            <img src="/profiles/Dr. Srinivasulu Reddy.JPG" alt="Dr. Srinivasulu Reddy" />
+          </div>
+          <div class="advisory-info">
+            <h4>Dr. Srinivasulu Reddy</h4>
+            <p>NIT Tiruchirappalli, India</p>
+          </div>
+        </div>
+        
+        <div class="advisory-card">
+          <div class="advisory-image">
+            <img src="/profiles/Dr. A. Bramhananda Reddy.jpeg"alt="Dr. A. Bramhananda Reddy" />
+          </div>
+          <div class="advisory-info">
+            <h4>Dr. A. Bramhananda Reddy</h4>
+            <p>VNR VJIET, Hyderabad, India</p>
+          </div>
+        </div>
+        
+        <div class="advisory-card">
+          <div class="advisory-image">
+            <img src="/profiles/Dr SambasivaRao Baragada.png" alt="Dr. Sambasivarao Baragada" />
+          </div>
+          <div class="advisory-info">
+            <h4>Dr. Sambasivarao Baragada</h4>
+            <p>M.V.S Government Arts and Science College</p>
+            <p class="institution">Mahabubnagar, India</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <Footer />
 </Layout>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+    overflow: hidden;
+  }
+
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="600" cy="700" r="120" fill="url(%23a)"/></svg>');
+    animation: float 20s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-title {
+    font-size: 4.5rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, #ffffff, #e0e7ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    margin-bottom: 1rem;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+    to { text-shadow: 0 0 40px rgba(255, 255, 255, 0.6); }
+  }
+
+  .hero-subtitle {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .hero-decoration {
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #ffffff, transparent);
+    margin: 0 auto;
+    border-radius: 2px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  /* Section Styles */
+  section {
+    padding: 80px 0;
+    position: relative;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 60px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    position: relative;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 2px;
+  }
+
+  /* Chief Patrons Section */
+  .chief-patrons-section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+  }
+
+  .chief-patrons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+  }
+
+  .chief-patron-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    transform: translateY(0);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .chief-patron-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-glow {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
+    border-radius: 22px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .chief-patron-card:hover .card-glow {
+    opacity: 1;
+  }
+
+  .patron-image {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  }
+
+  .patron-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .patron-info h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 8px;
+  }
+
+  .patron-info .position {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+  }
+
+  /* Patrons Section */
+  .patrons-section {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .patrons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+
+  .patron-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    transform: translateY(0);
+  }
+
+  .patron-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  }
+
+  .patron-image-small {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .patron-image-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .patron-info-small h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 5px;
+  }
+
+  .patron-info-small p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  /* General Chairs, Program Chairs, TPC, Advisory Sections */
+  .general-chairs-section,
+  .program-chairs-section,
+  .tpc-section,
+  .advisory-section {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .chairs-grid,
+  .program-chairs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+
+  .tpc-grid,
+  .advisory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+  }
+
+  .chair-card,
+  .program-chair-card,
+  .tpc-card,
+  .advisory-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
+    transform: translateY(0);
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  .chair-card:hover,
+  .program-chair-card:hover,
+  .tpc-card:hover,
+  .advisory-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .chair-card:nth-child(1) { animation-delay: 0.1s; }
+  .chair-card:nth-child(2) { animation-delay: 0.2s; }
+  .chair-card:nth-child(3) { animation-delay: 0.3s; }
+
+  .chair-image,
+  .tpc-image,
+  .advisory-image {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+
+  .chair-image img,
+  .tpc-image img,
+  .advisory-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .chair-info h3,
+  .tpc-info h4,
+  .advisory-info h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 8px;
+  }
+
+  .chair-info .position,
+  .chair-info .institution,
+  .tpc-info p,
+  .advisory-info p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+
+  .chair-info .institution,
+  .advisory-info .institution {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 3rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+    }
+
+    .chief-patron-card,
+    .patron-card,
+    .chair-card,
+    .program-chair-card,
+    .tpc-card,
+    .advisory-card {
+      padding: 20px;
+    }
+
+    .patron-image {
+      width: 100px;
+      height: 100px;
+    }
+
+    .patron-image-small {
+      width: 70px;
+      height: 70px;
+    }
+
+    .chair-image,
+    .tpc-image,
+    .advisory-image {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 15px;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+
+    .chief-patrons-grid,
+    .patrons-grid,
+    .tpc-grid,
+    .advisory-grid {
+      gap: 20px;
+    }
+
+    section {
+      padding: 40px 0;
+    }
+  }
+
+  /* Additional Animations */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .section-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+    border-radius: inherit;
+  }
+
+  /* Scroll-triggered animations */
+  @media (prefers-reduced-motion: no-preference) {
+    .chief-patron-card,
+    .patron-card,
+    .chair-card,
+    .program-chair-card,
+    .tpc-card,
+    .advisory-card {
+      animation: slideInUp 0.8s ease forwards;
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Stagger the animations */
+    .tpc-card:nth-child(1) { animation-delay: 0.1s; }
+    .tpc-card:nth-child(2) { animation-delay: 0.15s; }
+    .tpc-card:nth-child(3) { animation-delay: 0.2s; }
+    .tpc-card:nth-child(4) { animation-delay: 0.25s; }
+    .tpc-card:nth-child(5) { animation-delay: 0.3s; }
+    .tpc-card:nth-child(6) { animation-delay: 0.35s; }
+    .tpc-card:nth-child(7) { animation-delay: 0.4s; }
+    .tpc-card:nth-child(8) { animation-delay: 0.45s; }
+    .tpc-card:nth-child(9) { animation-delay: 0.5s; }
+    .tpc-card:nth-child(10) { animation-delay: 0.55s; }
+    .tpc-card:nth-child(11) { animation-delay: 0.6s; }
+    .tpc-card:nth-child(12) { animation-delay: 0.65s; }
+    .tpc-card:nth-child(13) { animation-delay: 0.7s; }
+    .tpc-card:nth-child(14) { animation-delay: 0.75s; }
+    .tpc-card:nth-child(15) { animation-delay: 0.8s; }
+
+    .advisory-card:nth-child(1) { animation-delay: 0.1s; }
+    .advisory-card:nth-child(2) { animation-delay: 0.2s; }
+    .advisory-card:nth-child(3) { animation-delay: 0.3s; }
+    .advisory-card:nth-child(4) { animation-delay: 0.4s; }
+    .advisory-card:nth-child(5) { animation-delay: 0.5s; }
+    .advisory-card:nth-child(6) { animation-delay: 0.6s; }
+    .advisory-card:nth-child(7) { animation-delay: 0.7s; }
+  }
+
+  /* Particle effect overlay */
+  .hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
+      radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.2), transparent),
+      radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.4), transparent),
+      radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.3), transparent),
+      radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.2), transparent);
+    background-size: 200px 100px;
+    animation: sparkle 15s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes sparkle {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-100px);
+    }
+  }
+</style>-patrons-grid,
+    <!-- .chairs-grid,
+    .program-chairs-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .tpc-grid,
+    .advisory-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    section {
+      padding: 60px 0;
+    }
+
+    .chief -->
