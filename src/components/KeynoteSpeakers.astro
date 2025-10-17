@@ -1,4 +1,15 @@
 ---
+/**
+ * @file KeynoteSpeakers.astro
+ * @description This component displays the keynote speakers for the conference.
+ * @component
+ * @property {Array} speakers - An array of speaker objects.
+ * @property {string} speakers.name - The name of the speaker.
+ * @property {string} speakers.title - The title of the speaker.
+ * @property {string} speakers.image - The URL of the speaker's image.
+ * @property {string} speakers.topic - The topic of the speaker's talk.
+ * @property {string} speakers.bio - A short biography of the speaker.
+ */
 const speakers = [
   {
     name: "Prof. Elena Rodriguez",
@@ -24,9 +35,9 @@ const speakers = [
 ];
 ---
 
-<section class="py-16 bg-gray-50">
+<!-- <section class="py-16 bg-gray-50">
   <div class="container mx-auto px-4">
-    <!-- <h2 class="text-3xl font-bold text-center mb-12">Keynote Speakers</h2> -->
+    <h2 class="text-3xl font-bold text-center mb-12">Keynote Speakers</h2> -->
     
     <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {speakers.map(speaker => (
@@ -40,8 +51,20 @@ const speakers = [
             <p class="text-primary font-medium mb-3">"{speaker.topic}"</p>
             <p class="text-gray-700">{speaker.bio}</p>
           </div>
-        </div> -->
+        </div> 
       
+    </div>
+  </div>
+</section> -->
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <!-- Existing content -->
+
+    <!-- Acknowledgement Note -->
+    <div class="mt-12 bg-white border-l-4 border-blue-500 p-6 rounded-lg shadow-sm">
+      <p class="text-gray-700 text-sm md:text-base">
+        <strong>Note:</strong> The Microsoft CMT server was used for managing the peer-reviewing process for this conference. This service was generously provided free of charge by Microsoft, covering all associated costs including Azure cloud services, software development, and support.
+      </p>
     </div>
   </div>
 </section>
