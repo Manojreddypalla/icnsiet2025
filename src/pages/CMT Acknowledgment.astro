@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <Header />
+  <section class="py-20 bg-gray-100 dark:bg-gray-900">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+        <div class="p-8 sm:p-12">
+          <div class="flex flex-col sm:flex-row items-center justify-center text-center sm:text-left mb-8">
+            <svg class="h-16 w-16 text-blue-500 mb-4 sm:mb-0 sm:mr-6 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <h2 class="text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+              Acknowledgment
+            </h2>
+          </div>
+          <div class="border-l-4 border-blue-500 pl-8">
+            <p class="text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
+              The peer-reviewing process for this conference was managed using the Microsoft CMT service.
+            </p>
+            <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
+              This service was provided free of charge by Microsoft, who generously covered all associated expenses, including costs for Azure cloud services, software development, and support. We are sincerely grateful for their significant contribution to the academic community.
+            </p>
+          </div>
+          <div class="mt-10 text-center">
+            <a href="https://cmt3.research.microsoft.com/" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors duration-300 shadow-lg">
+              Learn More About Microsoft CMT
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</Layout>
